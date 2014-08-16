@@ -5,7 +5,7 @@ ruby '2.0.0'
 gem 'rails', '4.0.8'
 
 #If Bundler complains about a readline error
-#gem 'rb-read\-line', '~> 0.4.2'
+gem 'rb-readline', '~> 0.4.2'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.2'
