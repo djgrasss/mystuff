@@ -36,6 +36,8 @@ end
 group :development, :test do
   gem 'sqlite3', '1.3.8'
   gem 'rspec-rails', '2.13.1'
+  gem 'hpricot'
+  gem 'ruby_parser'
 end
 group :test do
   gem 'selenium-webdriver', '2.35.1'
@@ -45,6 +47,8 @@ group :production do
   gem 'pg', '0.15.1'
   gem 'rails_12factor', '0.0.2'
 end
+gem "haml-rails"
+gem "slim"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
