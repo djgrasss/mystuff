@@ -1,0 +1,27 @@
+<header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <%= link_to "CalBaby",  root_path, class: "navbar-brand"%>
+        </div>
+        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+            <ul class="nav navbar-nav">
+                <li> <%= link_to "Home", root_path %> </li>
+                <li> <%= link_to "Help", help_path %> </li>
+                <li> <%= link_to "About", about_path %> </li>
+                <li> <%= link_to "Contact", contact_path %> </li>
+                <li> <%= link_to "Sign In", '#' %> </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="http://expo.getbootstrap.com" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Expo');">Expo</a></li>
+                <li><a href="http://blog.getbootstrap.com" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Blog');">Blog</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
