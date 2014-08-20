@@ -13,4 +13,8 @@ class StaticPagesController < ApplicationController
 
   def test
   end
+  def find_surrogacy
+  end
+  def register
+  end
 end

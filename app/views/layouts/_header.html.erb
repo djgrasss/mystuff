@@ -11,15 +11,17 @@
         </div>
         <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
             <ul class="nav navbar-nav">
-                <li> <%= link_to "Home", root_path %> </li>
-                <li> <%= link_to "Help", help_path %> </li>
-                <li> <%= link_to "About", about_path %> </li>
-                <li> <%= link_to "Contact", contact_path %> </li>
-                <li> <%= link_to "Sign In", '#' %> </li>
+                <li> <%= link_to "首页", root_path %> </li>
+                <li> <%= link_to "帮助", help_path %> </li>
+                <li> <%= link_to "寻找代母", find_surrogacy_path %> </li>
+                <li> <%= link_to "法律咨询", about_path %> </li>
+                <li> <%= link_to "联系我们", contact_path %> </li>
+                <li> <%= link_to "登录", '#' %> </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="http://expo.getbootstrap.com" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Expo');">Expo</a></li>
-                <li><a href="http://blog.getbootstrap.com" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Blog');">Blog</a></li>
+                <li>
+                <%= link_to "注册", signup_path, onclick: "ga('send', 'event', 'Navbar', 'Community links', 'Expo');" %>
+                </li>
             </ul>
         </nav>
     </div>
