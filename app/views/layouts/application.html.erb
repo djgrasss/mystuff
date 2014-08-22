@@ -5,6 +5,8 @@
             <%=full_title(yield(:title))%>
         </title>
         <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+        <%= javascript_include_tag params[:controller] %> 
+        <%= stylesheet_link_tag params[:controller] %>
         <%=csrf_meta_tags %>
         <%= render 'layouts/shim' %>
     </head>
@@ -13,6 +15,7 @@
             <%= render 'layouts/header' %>
             <%= yield %>
             <%= render 'layouts/footer' %>
+            <%= debug(params) if Rails.env.development? %>
         </div>
     </body>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
