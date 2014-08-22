@@ -1,8 +1,7 @@
 require 'spec_helper'
-
 describe User do
-  before { @user = User.new(name: "Example User", 
-                            email: "user@example.com",
+  before { @user = User.new(name: "Xiaoma", 
+                            email: "jfeng17@jhu.edu",
                             password: "foobar", 
                             password_confirmation: "foobar") }
   subject { @user }
@@ -63,6 +62,17 @@ describe User do
     before { @user.password_confirmation = "mismatch" }
     it { should_not be_valid }
   end
+  describe "email saved into database as downcase" do
+    before { 
+      @user.email = @user.email.upcase
+      @user.save
+    }
+    let(:inserted_user){ User.find_by(name: @user.name) }
+    it{
+      expect(@user.email.downcase).to eq  inserted_user.email
+      #"jfeng17@jhu.edu"
+    }
+  end
   describe "return value of authenticate method" do
     before { @user.save }
     let(:found_user) { User.find_by(email: @user.email) }
@@ -84,6 +94,3 @@ describe User do
     it {should be_invalid}
   end
 end
-
-
-
