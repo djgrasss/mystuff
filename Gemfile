@@ -6,8 +6,7 @@ gem 'rails', '4.0.8'
 
 #If Bundler complains about a readline error
 gem 'rb-readline', '~> 0.4.2'
-
-
+gem 'bcrypt-ruby', '3.1.2'
 
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
