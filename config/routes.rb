@@ -8,8 +8,8 @@ Engex::Application.routes.draw do
   match '/test',    to: "static_pages#test",    via: 'get'
   match '/find_surrogacy',    to: "static_pages#find_surrogacy",    via: 'get'
   match '/register',    to: "static_pages#register",    via: 'get'
-  match '/signup',  to: 'users#new',            via: 'get'
   resources :users
+  match '/signup',  to: 'users#new',            via: 'get'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
