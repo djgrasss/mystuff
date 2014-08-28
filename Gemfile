@@ -7,6 +7,7 @@ gem 'rails', '4.0.8'
 #If Bundler complains about a readline error
 gem 'rb-readline', '~> 0.4.2'
 gem 'bcrypt-ruby', '3.1.2'
+gem 'will_paginate-bootstrap'
 
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -22,6 +23,9 @@ gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
+gem 'faker', '1.1.2' #make fake users and emails
+gem 'will_paginate', '3.0.4'
+gem 'bootstrap-will_paginate', '0.0.9'
 
 
 group :doc do
