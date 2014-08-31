@@ -10,7 +10,7 @@ describe User do
   it { should respond_to(:password_digest) }
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
-  it { should respond_to(:remember_token) }
+  it { should respond_to(:stuff_token) }
   it { should respond_to(:authenticate) }
   it { should respond_to(:admin) }
   it { should be_valid }
@@ -99,8 +99,8 @@ describe User do
   end
   describe "remember token" do
     before { @user.save }
-    its(:remember_token) { should_not be_blank }
-    #it { expect(@user.remember_token).not_to be_blank }
+    its(:stuff_token) { should_not be_blank }
+    #it { expect(@user.stuff_token).not_to be_blank }
   end
   describe "with admin attribute set to 'true'" do
     before do

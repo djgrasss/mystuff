@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
 
 
 
-  def User.new_remember_token
+  def User.new_mystuff_token
     SecureRandom.urlsafe_base64
   end
   def User.digest(token)
@@ -20,6 +20,6 @@ class User < ActiveRecord::Base
   end
   private
   def create_member_token
-    self.remember_token = User.digest(User.new_remember_token)
+    self.stuff_token = User.digest(User.new_stuff_token)
   end
 end
