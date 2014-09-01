@@ -26,3 +26,4 @@ doc/
 .idea
 .secret
 waterfall/
+bin/

@@ -20,6 +20,6 @@ class User < ActiveRecord::Base
   end
   private
   def create_member_token
-    self.stuff_token = User.digest(User.new_stuff_token)
+    self.mystuff_token = User.digest(User.new_mystuff_token)
   end
 end

@@ -5,7 +5,7 @@ Engex::Application.routes.draw do
   get "images/new"
   get "images/create"
   resources :images
-
+  get "static_pages/my_stuff"
   match '/home',    to: "users#all_stuff",      via: 'get'
   match '/help',    to: "static_pages#help",    via: 'get'
   match '/about',   to: "static_pages#about",   via: 'get'
@@ -15,7 +15,7 @@ Engex::Application.routes.draw do
   match '/register',    to: "static_pages#register",    via: 'get'
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
-  root  'static_pages#home'
+  root  'users#all_stuff'
   match '/signup',  to: 'users#new',            via: 'get'
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'

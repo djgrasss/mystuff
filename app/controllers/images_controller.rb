@@ -34,6 +34,17 @@ class ImagesController < ApplicationController
 
   def index
     @images = Image.paginate(page: params[:page])
+    respond_to do |format|
+      format.html{
+      }
+      format.json {
+        ret = @images.as_json
+        render json:{
+          :total => ret.count,
+          :result => ret
+        }
+      }
+    end
   end
 
   def new

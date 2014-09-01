@@ -14,3 +14,5 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
+//= require waterfall.min.js
+//= require handlebars.js
