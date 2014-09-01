@@ -1,4 +1,11 @@
 Engex::Application.routes.draw do
+  get "images/edit"
+  get "images/show"
+  get "images/index"
+  get "images/new"
+  get "images/create"
+  resources :images
+
   match '/home',    to: "users#all_stuff",      via: 'get'
   match '/help',    to: "static_pages#help",    via: 'get'
   match '/about',   to: "static_pages#about",   via: 'get'
