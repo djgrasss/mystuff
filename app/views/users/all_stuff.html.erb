@@ -1,3 +1,24 @@
-<% (1..100).each do |i| %>
-    <li><%=i%></li>
-<% end %>
+<div id="container" style="width: 1000px; margin: 0 auto;"></div>
+
+<script type="text/x-handlebars-template" id="waterfall-tpl">
+  {{#result}}
+  <div class="item">
+    <img src="{{image}}" />
+  </div>
+  {{/result}}
+</script>
+
+<script>
+    $(document).ready(function(){
+        $('#container').waterfall({
+            itemCls: 'item',
+            colWidth:222,
+            gutterWidth:15,
+            fitWidth:false,
+            checkImagesLoaded:false,
+            path:function(page) {
+                return 'assets/test.json'
+            }
+        });
+    });
+</script>
