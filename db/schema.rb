@@ -11,24 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140906014624) do
+ActiveRecord::Schema.define(version: 20140906055509) do
 
   create_table "images", force: true do |t|
     t.integer  "user_id"
     t.string   "image_url"
-    t.string   "source_url"
     t.string   "title"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "frame_url"
+    t.string   "page_url"
   end
 
   create_table "texts", force: true do |t|
-    t.string   "source_url"
     t.string   "title"
-    t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "selection_text"
+    t.string   "frame_url"
+    t.string   "page_url"
   end
 
   create_table "users", force: true do |t|

@@ -4,10 +4,13 @@
   .col-md-6.col-md-offset-3.col-lg-6.col-lg-offset-3
     = form_for(@text) do |f|
       = render partial: 'shared/error_messages', locals:{obj:@text}
-      = f.label :source_url, "source url"
-      = f.text_field :source_url
-      = f.label :title, "title"
-      = f.text_field :title
-      = f.label :description, "description"
-      = f.text_field :description
-      = f.submit "New Text", class: "btn btn-large btn-primary"
+      = f.label :page_url, "page url"
+      = f.text_field :page_url
+
+      = f.label :frame_url, "frame url"
+      = f.text_field :frame_url
+
+      = f.label :selection_text, "selection_text"
+      = f.text_field :selection_text
+
+      = f.submit "New Selection", class: "btn btn-large btn-primary"

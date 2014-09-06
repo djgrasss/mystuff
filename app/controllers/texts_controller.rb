@@ -1,7 +1,24 @@
 class TextsController < ApplicationController
+  protect_from_forgery :except => [:create]
   before_action :set_text, only: [:new]
   def show
     @text = Text.find(params[:id])
+  end
+  def index
+    @texts = Text.paginate(page: params[:page])
+    respond_to do |format|
+      format.html{
+      }
+      format.json {
+        ret = @texts.as_json
+        render json:{
+            :total => ret.count,
+            :result => ret
+        }
+      }
+    end
+  end
+  def new
   end
   def create
     @text = Text.new(text_params)
@@ -14,7 +31,7 @@ class TextsController < ApplicationController
         format.json {
           text_url = url_for @text
           render json: {
-              :status_code => 1,
+              :status_code => 0,
               :source_url => text_url
           }
         }
@@ -22,7 +39,7 @@ class TextsController < ApplicationController
         format.html{ render 'new'  }
         format.json {
           render json: {
-              :status_code => 2
+              :status_code => 1
           }
         }
       end
@@ -30,7 +47,7 @@ class TextsController < ApplicationController
   end
   private
   def text_params
-    params.require(:text).permit(:source_url, :title, :description)
+    params.require(:text).permit(:page_url, :frame_url, :selection_text)
   end
   def set_text
     @text = Text.new

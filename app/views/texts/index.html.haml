@@ -1,1 +1,5 @@
-
+- provide(:title, 'All Texts')
+%h1 All Awesome Texts
+= will_paginate @texts, renderer: BootstrapPagination::Rails
+%ul.texts= render @texts
+= will_paginate @texts, renderer: BootstrapPagination::Rails

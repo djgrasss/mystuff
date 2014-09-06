@@ -1,0 +1,10 @@
+.row
+  %aside.span4
+    %section
+      %h1
+        %ul
+          %li= text.page_url
+          %li= text.frame_url
+          %li= text.selection_text
+= link_to 'Edit', edit_text_path(text)
+= link_to 'Back', texts_path

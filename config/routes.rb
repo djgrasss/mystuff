@@ -1,8 +1,4 @@
 Engex::Application.routes.draw do
-  get "texts/index"
-  get "texts/show"
-  get "texts/new"
-  get "texts/create"
   resources :texts
 
   resources :images
