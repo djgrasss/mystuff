@@ -1,11 +1,2 @@
 = provide(:title, @image.title)
-.row
-  %aside.span4
-    %section
-      %h1
-        %ul
-          %li= @image.title
-          %li= @image.description
-          %img{:src => @image.image_url}
-= link_to 'Edit', edit_image_path(@image)
-= link_to 'Back', images_path
+= render @image

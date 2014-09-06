@@ -1,0 +1,11 @@
+= provide(:title, @text.title)
+.row
+  %aside.span4
+    %section
+      %h1
+        %ul
+          %li= @text.title
+          %li= @text.description
+          %li= @text.source_url
+= link_to 'Edit', edit_text_path(@text)
+= link_to 'Back', texts_path
