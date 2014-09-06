@@ -1,9 +1,6 @@
 Engex::Application.routes.draw do
-  get "images/edit"
-  get "images/show"
-  get "images/index"
-  get "images/new"
-  get "images/create"
+  resources :texts
+
   resources :images
   get "static_pages/my_stuff"
   match '/home',    to: "users#all_stuff",      via: 'get'
@@ -11,7 +8,6 @@ Engex::Application.routes.draw do
   match '/about',   to: "static_pages#about",   via: 'get'
   match '/contact', to: "static_pages#contact", via: 'get'
   match '/test',    to: "static_pages#test",    via: 'get'
-  match '/find_surrogacy',    to: "static_pages#find_surrogacy",    via: 'get'
   match '/register',    to: "static_pages#register",    via: 'get'
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
