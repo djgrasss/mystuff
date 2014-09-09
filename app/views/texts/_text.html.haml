@@ -1,13 +1,10 @@
-<div id="container" style="width: 1000px; margin: 0 auto;"></div>
-
-%script#waterfall-tpl{:type => "text/x-handlebars-template"}
-  {{#result}}
-  .item.thumbnail
-    .caption
-      %h3 {{selection_text}}
-      %p
-        Url: {{page_url}}
-        %p
-          %p
-            %a.btn.btn-default{"data-target" => "#item_modal", "data-toggle" => "modal", :href => "#", :role => "button"} More
-  {{/result}}
+.row
+  %aside.span4
+    %section
+      %h1
+        %ul
+          %li= text.page_url
+          %li= text.frame_url
+          %li= text.selection_text
+= link_to 'Edit', edit_text_path(text)
+= link_to 'Back', texts_path

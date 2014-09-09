@@ -1,5 +1,23 @@
 - provide(:title, 'All Texts')
-%h1 All Awesome Texts
-= will_paginate @texts, renderer: BootstrapPagination::Rails
-%ul.texts= render @texts
-= will_paginate @texts, renderer: BootstrapPagination::Rails
+#container{:style => "width: 1000px; margin: 0 auto;"}
+%script#waterfall-tpl{:type => "text/x-handlebars-template"}
+  {{#result}}
+  .item.thumbnail
+    -#.caption
+    %h5.selection_text {{selection_text}}
+    %p
+      %a{:href=>"{{page_url}}"} link
+      %p
+        %p
+          %a.btn.btn-default{"data-target" => "#item_modal", "data-toggle" => "modal", :href => "#", :role => "button"} More
+  {{/result}}
+
+
+
+
+
+
+-#%h1 All Awesome Texts
+-#= will_paginate @texts, renderer: BootstrapPagination::Rails
+-#%ul.texts= render @texts
+-#= will_paginate @texts, renderer: BootstrapPagination::Rails

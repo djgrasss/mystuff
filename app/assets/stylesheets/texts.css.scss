@@ -3,6 +3,11 @@
   They will automatically be included in application.css.
 */
 .thumbnail {
-    width:222px;
-    height:350px;
+  width:222px;
+  /*height:350px;*/
+  .selection_text{
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+//    text-wrap: normal;
+  }
 }
