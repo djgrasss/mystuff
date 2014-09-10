@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20140909015351) do
     t.string   "password_digest"
     t.boolean  "admin",           default: false
     t.string   "mystuff_token"
-    t.string   "index"
+    t.integer  "index",           default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
