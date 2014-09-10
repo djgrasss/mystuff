@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140906055509) do
+ActiveRecord::Schema.define(version: 20140909015351) do
 
   create_table "images", force: true do |t|
     t.integer  "user_id"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20140906055509) do
     t.string   "password_digest"
     t.boolean  "admin",           default: false
     t.string   "mystuff_token"
+    t.string   "index"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

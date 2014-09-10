@@ -5,13 +5,13 @@ class User < ActiveRecord::Base
   validates :name, presence: true, length: {maximum: 50}
   #VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
-  validates :email, presence: true, format:{with: VALID_EMAIL_REGEX},
-    uniqueness:{case_sensitive: false}
+  validates :email, presence: true, format:{with: VALID_EMAIL_REGEX}, uniqueness:{case_sensitive: false}
   has_secure_password
   validates :password, length: { minimum: 6 }
 
 
-
+  def User.get_index
+  end
   def User.new_mystuff_token
     SecureRandom.urlsafe_base64
   end
@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
     Digest::SHA1.hexdigest(token.to_s)
   end
   private
-  def create_member_token
-    self.mystuff_token = User.digest(User.new_mystuff_token)
-  end
+    def create_member_token
+      self.mystuff_token = User.digest(User.new_mystuff_token)
+    end
 end
