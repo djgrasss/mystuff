@@ -14,4 +14,6 @@ class ApiController < ApplicationController
         images: images
     }
   end
+  def mystuff
+  end
 end

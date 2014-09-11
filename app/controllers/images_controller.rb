@@ -33,7 +33,7 @@ class ImagesController < ApplicationController
   end
 
   def index
-    @images = Image.paginate(page: params[:page])
+    @images = Image.paginate(page: params[:page]).order("images.id DESC")
     respond_to do |format|
       format.html{
       }

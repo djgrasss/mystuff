@@ -5,7 +5,7 @@ class TextsController < ApplicationController
     @text = Text.find(params[:id])
   end
   def index
-    @texts = Text.paginate(page: params[:page])
+    @texts = Text.paginate(page: params[:page]).order("texts.id DESC")
     respond_to do |format|
       format.html{
       }

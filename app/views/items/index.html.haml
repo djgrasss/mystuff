@@ -1,0 +1,39 @@
+#container{:style => "width: 1000px; margin: 0 auto;"}
+
+%script#waterfall-tpl{:type => "text/x-handlebars-template"}
+  {{#result}}
+  .item.thumbnail
+    {{#ifCond actable_type '==' 'Image'}}
+    %img.img-thumbnail{:src => "{{image_url}}"}/
+    .caption
+      %h3 {{title}}
+      %p
+        {{description}}
+        %p
+          %p
+          %a.btn.btn-default{"data-target" => "#item_modal", "data-toggle" => "modal", :href => "#", :role => "button"} More
+    {{else}}
+    -#.caption
+    %h5.selection_text {{selection_text}}
+    %p
+      %a{:href=>"{{page_url}}"} link
+      %p
+        %p
+          %a.btn.btn-default{"data-target" => "#item_modal", "data-toggle" => "modal", :href => "#", :role => "button"} More
+    {{/ifCond}}
+  {{/result}}
+
+/ Modal
+#item_modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+          %span.sr-only Close
+        %h4#myModalLabel.modal-title Modal title
+      .modal-body
+        \...
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+        %button.btn.btn-primary{:type => "button"} Save changes

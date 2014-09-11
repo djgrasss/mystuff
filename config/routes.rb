@@ -1,4 +1,8 @@
 Engex::Application.routes.draw do
+  get 'items/index'
+
+  resources :items
+
   resources :texts
 
   resources :images
