@@ -8,6 +8,17 @@ body {
   //height:500px;
 }
 
+.thumbnail {
+  width:222px;
+  /*height:350px;*/
+  .selection_text{
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    //    text-wrap: normal;
+  }
+}
+
+
 .bs-docs-nav {
   .navbar-brand {
     font-weight: 500;
