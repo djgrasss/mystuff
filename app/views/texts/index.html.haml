@@ -4,12 +4,13 @@
   {{#result}}
   .item.thumbnail
     -#.caption
-    %h5.selection_text {{selection_text}}
+    .txt_wrap.height_limit
+      %h5.selection_text {{selection_text}}
     %p
-      %a{:href=>"{{page_url}}"} link
+      %span.glyphicon.glyphicon-copyright-mark
       %p
         %p
-          %a.btn.btn-default{"data-target" => "#item_modal", "data-toggle" => "modal", :href => "#", :role => "button"} More
+          %a.more.btn.btn-default{"data-target" => "#item_modal", "data-toggle" => "modal", :href => "#", :role => "button"} More
   {{/result}}
 
 
