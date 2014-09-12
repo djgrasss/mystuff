@@ -2,3 +2,24 @@
   Place all the styles related to the matching controller here.
   They will automatically be included in application.css.
 */
+.thumbnail {
+  width:222px;
+  /*height:350px;*/
+  .txt_wrap {
+    overflow: hidden;
+  }
+
+  .height_limit {
+    max-height: 300px;
+  }
+
+  .selection_text{
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+//    text-wrap: normal;
+  }
+
+  .more {
+    display:none;
+  }
+}
