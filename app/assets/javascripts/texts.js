@@ -38,11 +38,17 @@
                                 $more.click(function(){
                                     if ($wrap.hasClass('height_limit')) {
                                         $wrap.removeClass('height_limit');
-                                        $more.html("Less");
+                                        var $span=$more.find('span');
+                                        $span.html("Less");
+                                        $span.removeClass('glyphicon-arrow-down');
+                                        $span.addClass('glyphicon-arrow-up');
                                         $('.item').resize();
                                     } else {
                                         $wrap.addClass('height_limit');
-                                        $more.html("More");
+                                        var $span=$more.find('span');
+                                        $span.html("More");
+                                        $span.removeClass('glyphicon-arrow-up');
+                                        $span.addClass('glyphicon-arrow-down');
                                         $('.item').resize();
                                     }
                                 });

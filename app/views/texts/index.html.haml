@@ -3,18 +3,17 @@
 %script#waterfall-tpl{:type => "text/x-handlebars-template"}
   {{#result}}
   .item.thumbnail
+    %a.close
+      %span.glyphicon.glyphicon-remove
     -#.caption
     .txt_wrap.height_limit
       %h5.selection_text {{selection_text}}
     %p
-      %span.glyphicon.glyphicon-copyright-mark
       %p
         %p
-          %a.more.btn.btn-default{"data-target" => "#item_modal", "data-toggle" => "modal", :href => "#", :role => "button"} More
+          %a.more
+            %span.glyphicon.glyphicon-arrow-down More
   {{/result}}
-
-
-
 
 
 
