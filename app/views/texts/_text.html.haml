@@ -1,10 +1,11 @@
-.row
-  %aside.span4
-    %section
-      %h1
-        %ul
-          %li= text.page_url
-          %li= text.frame_url
-          %li= text.selection_text
-= link_to 'Edit', edit_text_path(text)
-= link_to 'Back', texts_path
+.item.thumbnail
+  %a.close
+    %span.glyphicon.glyphicon-remove
+  -#.caption
+  .txt_wrap.height_limit
+    %h5.selection_text {{selection_text}}
+  %p
+    %p
+      %p
+        %a.more
+          %span.glyphicon.glyphicon-arrow-down More
