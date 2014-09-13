@@ -2,17 +2,7 @@
 #container{:style => "width: 1000px; margin: 0 auto;"}
 %script#waterfall-tpl{:type => "text/x-handlebars-template"}
   {{#result}}
-  .item.thumbnail
-    %a.close
-      %span.glyphicon.glyphicon-remove
-    -#.caption
-    .txt_wrap.height_limit
-      %h5.selection_text {{selection_text}}
-    %p
-      %p
-        %p
-          %a.more
-            %span.glyphicon.glyphicon-arrow-down More
+  =render 'texts/text'
   {{/result}}
 
 

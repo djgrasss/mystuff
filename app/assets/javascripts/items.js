@@ -27,6 +27,7 @@ $(document).ready(function(){
                         clearInterval(erupt);
                 };
                 var erupt=setInterval(eruption, 500);
+                txt_wrap();
             },
             renderData: function (data, dataType) {
                 var tpl,template;

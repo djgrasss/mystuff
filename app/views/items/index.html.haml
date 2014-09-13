@@ -2,8 +2,8 @@
 
 %script#waterfall-tpl{:type => "text/x-handlebars-template"}
   {{#result}}
+  {{#ifCond actable_type '==' 'Image'}}
   .item.thumbnail
-    {{#ifCond actable_type '==' 'Image'}}
     %img.img-thumbnail{:src => "{{image_url}}"}/
     .caption
       %h3 {{title}}
@@ -12,15 +12,9 @@
         %p
           %p
           %a.btn.btn-default{"data-target" => "#item_modal", "data-toggle" => "modal", :href => "#", :role => "button"} More
-    {{else}}
-    -#.caption
-    %h5.selection_text {{selection_text}}
-    %p
-      %a{:href=>"{{page_url}}"} link
-      %p
-        %p
-          %a.btn.btn-default{"data-target" => "#item_modal", "data-toggle" => "modal", :href => "#", :role => "button"} More
-    {{/ifCond}}
+  {{else}}
+  =render 'texts/text'
+  {{/ifCond}}
   {{/result}}
 
 / Modal
