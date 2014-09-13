@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140911054549) do
+ActiveRecord::Schema.define(version: 20140913042522) do
 
   create_table "images", force: true do |t|
     t.integer  "user_id"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20140911054549) do
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "selection_text"
+    t.text     "selection_text", limit: 255
     t.string   "frame_url"
     t.string   "page_url"
     t.integer  "item_id"
