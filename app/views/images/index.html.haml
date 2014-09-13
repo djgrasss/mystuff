@@ -1,15 +1,7 @@
 #container{:style => "width: 1000px; margin: 0 auto;"}
 %script#waterfall-tpl{:type => "text/x-handlebars-template"}
   {{#result}}
-  .item.thumbnail
-    %img.img-thumbnail{:src => "{{image_url}}", :width => "222"}/
-    .caption
-      %h3 {{title}}
-      %p
-        {{description}}
-        %p
-          %p
-            %a.btn.btn-default{"data-target" => "#item_modal", "data-toggle" => "modal", :href => "#", :role => "button"} More
+  =render 'image'
   {{/result}}
 
 / Modal

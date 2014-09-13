@@ -5,8 +5,6 @@ class UsersController < ApplicationController
   before_action :admin_user,     only: :destroy
 
 
-  # GET /users
-  # GET /users.json
   def index
     @users = User.paginate(page: params[:page])
   end
@@ -27,8 +25,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  # POST /users
-  # POST /users.json
   def create
     @user = User.new(user_params)
     if @user.save
@@ -63,8 +59,6 @@ class UsersController < ApplicationController
    # end
   end
 
-  # DELETE /users/1
-  # DELETE /users/1.json
   def destroy
     @user.destroy
     respond_to do |format|
@@ -85,13 +79,6 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
-    end
-    def signed_in_user
-      unless signed_in?
-        store_location
-        flash[:info] = "Please sign in."
-        redirect_to signin_url
-      end
     end
     def correct_user
       @user = User.find(params[:id])

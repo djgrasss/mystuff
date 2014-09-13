@@ -21,6 +21,8 @@ Engex::Application.routes.draw do
     collection do
       get 'get_html'
       post 'get_html'
+      get 'notifications_count'
+      get 'check_signin'
     end
   end
 

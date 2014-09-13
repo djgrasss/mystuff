@@ -3,15 +3,7 @@
 %script#waterfall-tpl{:type => "text/x-handlebars-template"}
   {{#result}}
   {{#ifCond actable_type '==' 'Image'}}
-  .item.thumbnail
-    %img.img-thumbnail{:src => "{{image_url}}"}/
-    .caption
-      %h3 {{title}}
-      %p
-        {{description}}
-        %p
-          %p
-          %a.btn.btn-default{"data-target" => "#item_modal", "data-toggle" => "modal", :href => "#", :role => "button"} More
+  =render 'images/image'
   {{else}}
   =render 'texts/text'
   {{/ifCond}}

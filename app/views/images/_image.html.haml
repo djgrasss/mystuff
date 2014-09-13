@@ -1,10 +1,13 @@
-.row
-  %aside.span4
-    %section
-      %h1
-        %ul
-          %li= image.title
-          %li= image.description
-          %img{:src => image.image_url}
-= link_to 'Edit', edit_image_path(image)
-= link_to 'Back', images_path
+.item.thumbnail{"data-item-id" => "{{item_id}}" }
+  %img.img-thumbnail{:src => "{{image_url}}"}/
+  .caption
+    %h3 {{title}}
+    %p
+      {{description}}
+      %p
+        %p
+        %a.btn.btn-default{"data-target" => "#item_modal", "data-toggle" => "modal", :href => "#", :role => "button"} More
+        %a.close
+          %span.glyphicon.glyphicon-remove
+
+

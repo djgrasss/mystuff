@@ -16,4 +16,27 @@ class ApiController < ApplicationController
   end
   def mystuff
   end
+  def check_signin
+    render json: {
+        response:{
+            signed_in: signed_in?
+        }
+    }
+  end
+  def notifications_count
+    if signed_in?
+      render json: {
+          response: {
+              signed_in: true,
+              username: current_user['name']
+          }
+      }
+    else
+      render json: {
+          response: {
+              signed_in: false,
+          }
+      }
+    end
+  end
 end
