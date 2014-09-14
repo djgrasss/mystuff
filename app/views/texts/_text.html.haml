@@ -1,6 +1,6 @@
-.item.thumbnail{"data-item-id" => "{{item_id}}" }
+.item.thumbnail
   %a.close
-    %span.glyphicon.glyphicon-remove
+    %span.glyphicon.glyphicon-remove.delete-item{"item-id" => "{{item_id}}" }
   -#.caption
   .txt_wrap.height_limit
     %h5.selection_text {{selection_text}}

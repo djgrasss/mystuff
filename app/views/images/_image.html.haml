@@ -1,4 +1,4 @@
-.item.thumbnail{"data-item-id" => "{{item_id}}" }
+.item.thumbnail
   %img.img-thumbnail{:src => "{{image_url}}"}/
   .caption
     %h3 {{title}}
@@ -8,6 +8,4 @@
         %p
         %a.btn.btn-default{"data-target" => "#item_modal", "data-toggle" => "modal", :href => "#", :role => "button"} More
         %a.close
-          %span.glyphicon.glyphicon-remove
-
-
+          %span.glyphicon.glyphicon-remove.delete-item{"item-id" => "{{item_id}}" }

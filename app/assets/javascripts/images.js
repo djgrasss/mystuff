@@ -28,6 +28,7 @@ $(document).ready(function(){
                         clearInterval(erupt);
                 };
                 var erupt=setInterval(eruption, 500);
+                tofu_bind();
             },
             renderData: function (data, dataType) {
                 var tpl,template;

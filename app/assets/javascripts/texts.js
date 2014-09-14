@@ -28,6 +28,7 @@
                         };
                         var erupt=setInterval(eruption, 500);
                         txt_wrap();
+                        tofu_bind();
                     },
                     renderData: function (data, dataType) {
                         var tpl,template;
