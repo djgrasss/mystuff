@@ -1,6 +1,4 @@
 .item.thumbnail
-  %a.close
-    %span.glyphicon.glyphicon-remove.delete-item{"item-id" => "{{item_id}}" }
   -#.caption
   .txt_wrap.height_limit
     %h5.selection_text {{selection_text}}
@@ -9,3 +7,5 @@
       %p
         %a.more
           %span.glyphicon.glyphicon-arrow-down More
+        %a.close
+          %span.btn.glyphicon.glyphicon-remove.delete-item{"item-id" => "{{item_id}}", 'data-toggle'=>'modal', 'data-target' => '#item_delete_modal'}

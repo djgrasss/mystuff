@@ -29,8 +29,11 @@ function txt_wrap(){
     });
 }
 
-function tofu_bind(){
-    $('.delete-item').click(function(){
-        alert(1);
+function tofu_bind() {
+    console.log("hah");
+    $('.delete-item').on('click', function() {
+        $('#item_delete_modal').attr({
+            'item-id': $(this).attr('item-id')
+        });
     });
 }

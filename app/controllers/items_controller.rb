@@ -1,4 +1,10 @@
 class ItemsController < ApplicationController
+  def destroy
+    Item.destroy(params[:id])
+    render json: {
+        response: "ok"
+    }
+  end
   def index
     # page = params[:page].to_i
     # (1..10).each do |i|
