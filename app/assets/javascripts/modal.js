@@ -1,7 +1,7 @@
 $(document).ready(function(){
     var $item_delete_modal = $('#item_delete_modal');
-    $item_delete_modal.click(function(){
-        var item_id = $(this).attr('item-id');
+    $item_delete_modal.find('.btn-primary').click(function(){
+        var item_id = $item_delete_modal.attr('item-id');
         $.ajax({
             url: "/items/" + item_id,
             type: "post",
