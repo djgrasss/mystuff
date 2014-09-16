@@ -38,6 +38,12 @@ function tofu_bind() {
     });
 }
 
+
 function fancybox() {
-    $(".fancybox").fancybox();
+    $(".image-fancybox").click(function(e){
+        e.preventDefault();
+    }).fancybox({
+        type: "image"
+    });
 }
+
