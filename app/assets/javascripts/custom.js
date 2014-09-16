@@ -40,10 +40,18 @@ function tofu_bind() {
 
 
 function fancybox() {
-    $(".image-fancybox").click(function(e){
+    $(".image-fancybox.fancybox-thumb").click(function(e){
         e.preventDefault();
     }).fancybox({
-        type: "image"
+        type: "image",
+        prevEffect	: 'none',
+		nextEffect	: 'none',
+		helpers	: {
+			thumbs	: {
+				width	: 50,
+				height	: 50
+			}
+		}
     });
 }
 

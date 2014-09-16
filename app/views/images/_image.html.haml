@@ -1,7 +1,7 @@
 .item.thumbnail
-  %a.fancybox.image-fancybox{:href => "{{image_url}}", :title => "{{title}}", :overlay=> "{{description}}", :rel=>"group1"}
+  %a.fancybox.image-fancybox.fancybox-thumb{:href => "{{image_url}}", :title => "{{title}}", :overlay=> "{{description}}", :rel=>"image-fancybox"}
     %img.img-thumbnail{:src => "{{image_url}}", :alt=>""}
-  .caption
+  .captioe
     %h3.img-title {{title}}
     %p.img-detail
       {{description}}
