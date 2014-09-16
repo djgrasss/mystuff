@@ -37,3 +37,7 @@ function tofu_bind() {
         });
     });
 }
+
+function fancybox() {
+    $(".fancybox").fancybox();
+}
