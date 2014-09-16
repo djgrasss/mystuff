@@ -18,3 +18,4 @@
 //= require waterfall.min.js
 //= require handlebars.js
 //= require modal
+//= require jquery.fancybox.js
