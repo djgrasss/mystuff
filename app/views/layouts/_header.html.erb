@@ -1,4 +1,4 @@
-<header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
+<!--<header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
     <div class="container">
         <div class="navbar-header">
             <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
@@ -15,15 +15,52 @@
                 <li> <%= link_to "Help", help_path %> </li>
                 <li> <%= link_to "About", about_path %> </li>
                 <li> <%= link_to "Contact", contact_path %> </li>
-              <li> <%= link_to "AddImage", new_image_path %> </li>
+                <li> <%= link_to "AddImage", new_image_path %> </li>
                 <%= render 'layouts/signin' %>
             </ul>
-            <!-- <ul class="nav navbar-nav navbar-right">
+            [> <ul class="nav navbar-nav navbar-right">
                 <li>
                 <%= link_to "Signup", signup_path, onclick: "ga('send', 'event', 'Navbar', 'Community links', 'Expo');" %>
                 </li>
-            </ul> -->
+            </ul> <]
         </nav>
     </div>
-</header>
+</header>-->
 
+
+<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Start Bootstrap</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+            <ul class="nav navbar-nav">
+                <li> <%= link_to "Home", root_path %> </li>
+                <li> <%= link_to "Help", help_path %> </li>
+                <li> <%= link_to "About", about_path %> </li>
+                <li> <%= link_to "Contact", contact_path %> </li>
+                <li> <%= link_to "All", items_path %> </li>
+                <li> <%= link_to "Image", images_path %> </li>
+                <li> <%= link_to "Text", texts_path %> </li>
+            </ul>
+
+             <ul class="nav navbar-nav navbar-right">
+                <%= render 'layouts/signin' %>
+                <li>
+                <%= link_to "Signup", signup_path %>
+                </li>
+            </ul> 
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
