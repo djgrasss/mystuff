@@ -18,5 +18,5 @@
 //= require waterfall.min.js
 //= require handlebars.js
 //= require modal
-//= require vendor.js
 //= require jquery.mousewheel-3.0.6.pack.js
+//= require vendor.js

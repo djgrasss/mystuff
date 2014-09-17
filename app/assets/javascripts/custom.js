@@ -48,9 +48,10 @@ function fancybox() {
         nextEffect	: 'none',
 
         helpers	: {
-            buttons : {},
+            buttons : {
+                position : 'top'
+            },
             title : {
-                type : 'inside'
             },
             thumbs	: {
                 width	: 50,

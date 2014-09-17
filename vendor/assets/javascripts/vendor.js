@@ -1,1 +1,1 @@
-//= require_tree ./fancybox/
+//= require ./fancybox/index.js
