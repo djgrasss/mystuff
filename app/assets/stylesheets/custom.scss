@@ -32,15 +32,16 @@ body {
 
 
 
-.bs-docs-nav {
+.navbar {
+  background-color: #415e9b;
   .navbar-brand {
     font-weight: 500;
-    color: #563d7c;
+    color: #f9f9f9;
   }
   .navbar-nav > {
     li > a {
       font-weight: 500;
-      color: #563d7c;
+      color: #f9f9f9;
       &:hover {
         color: #463265;
         background-color: #f9f9f9;

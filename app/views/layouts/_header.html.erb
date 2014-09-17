@@ -1,33 +1,3 @@
-<!--<header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
-    <div class="container">
-        <div class="navbar-header">
-            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <%= link_to "HOPPY",  root_path, class: "navbar-brand"%>
-        </div>
-        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-            <ul class="nav navbar-nav">
-                <li> <%= link_to "Home", root_path %> </li>
-                <li> <%= link_to "Help", help_path %> </li>
-                <li> <%= link_to "About", about_path %> </li>
-                <li> <%= link_to "Contact", contact_path %> </li>
-                <li> <%= link_to "AddImage", new_image_path %> </li>
-                <%= render 'layouts/signin' %>
-            </ul>
-            [> <ul class="nav navbar-nav navbar-right">
-                <li>
-                <%= link_to "Signup", signup_path, onclick: "ga('send', 'event', 'Navbar', 'Community links', 'Expo');" %>
-                </li>
-            </ul> <]
-        </nav>
-    </div>
-</header>-->
-
-
 <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -38,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Start Bootstrap</a>
+            <%= link_to "HOPPY",  root_path, class: "navbar-brand"%>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -53,12 +23,7 @@
                 <li> <%= link_to "Text", texts_path %> </li>
             </ul>
 
-             <ul class="nav navbar-nav navbar-right">
-                <%= render 'layouts/signin' %>
-                <li>
-                <%= link_to "Signup", signup_path %>
-                </li>
-            </ul> 
+            <%= render 'layouts/signin' %>
         </div>
         <!-- /.navbar-collapse -->
     </div>
