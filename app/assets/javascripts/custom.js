@@ -44,13 +44,14 @@ function fancybox() {
         e.preventDefault();
     }).fancybox({
         type: "image",
-        prevEffect	: 'none',
+        //prevEffect	: 'none',
         nextEffect	: 'none',
 
         helpers	: {
-            buttons : {},
+            buttons : {
+                //position : 'top'
+            },
             title : {
-                type : 'inside'
             },
             thumbs	: {
                 width	: 50,
