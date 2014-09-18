@@ -9,6 +9,9 @@ gem 'rb-readline', '~> 0.4.2'
 gem 'bcrypt-ruby', '3.1.2'
 gem 'will_paginate-bootstrap'
 gem 'active_record-acts_as'
+gem 'chronic'
+gem 'aws-sdk'
+gem 'paperclip'
 
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -16,6 +19,7 @@ gem 'active_record-acts_as'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'

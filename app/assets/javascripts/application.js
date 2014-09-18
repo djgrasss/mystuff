@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui/core
+//= require jquery-ui/widget
 //= require custom
 //= require turbolinks
 //= require bootstrap.min
@@ -19,4 +21,5 @@
 //= require handlebars.js
 //= require modal
 //= require jquery.mousewheel-3.0.6.pack.js
-//= require vendor.js
+//= require vendor
+//= require jquery.fileupload

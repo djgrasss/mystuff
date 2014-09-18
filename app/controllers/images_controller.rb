@@ -3,6 +3,7 @@ class ImagesController < ApplicationController
 
   def create
     @image = Image.new(image_params)
+    p @image
     respond_to do |format|
       if @image.save
         format.html{
@@ -48,6 +49,12 @@ class ImagesController < ApplicationController
   end
 
   def new
+    @s3_direct_post = S3_BUCKET.presigned_post(
+        key: "uploads/#{SecureRandom.uuid}/${filename}",
+        success_action_status: 201,
+        acl: :public_read
+    )
+    p @s3_direct_post.fields.to_json.html_safe
     @image = Image.new
   end
   private

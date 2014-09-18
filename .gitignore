@@ -25,6 +25,7 @@ doc/
 .DS_Store
 .idea
 .secret
+.env
 waterfall/
 bin/
 db/*.sqlite3
