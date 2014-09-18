@@ -1,7 +1,6 @@
 = provide(:title, @image.title)
 .item.thumbnail
-  %a.fancybox.image-fancybox.fancybox-thumbs{:href => "{{image_url}}", :title => "{{title}}", :overlay=> "{{description}}", :rel=>"fancybox-thumbs", 'data-fancybox-group' => 'thumb'}
-    %img.img-thumbnail{:src => '#{@image.image_url}', :alt => '' }
+  %img.img-thumbnail{:src => @image.image_url, :alt => '' }
   .captioe
     %h3.img-title '#{@image.title}'
     %p.img-detail '#{@image.description}'
