@@ -26,20 +26,6 @@
         %li
           = link_to "Text", texts_path
       %ul.nav.navbar-nav.navbar-right
-        %li.dropdown
-          %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-            Add
-            %span.caret
-          %ul.dropdown-menu{:role => "menu"}
-            %li.dropdown-header Add Image
-            %li
-              = link_to "Upload", new_image_path
-            %li
-              %a{:href => "images/new"} From URL
-            %li.divider
-            %li.dropdown-header Add Text
-            %li
-              %a{:href => "#"} Add
         = render 'layouts/signin'
     / /.navbar-collapse
   / /.container
