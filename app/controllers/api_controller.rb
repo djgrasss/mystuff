@@ -1,3 +1,4 @@
+require 'chronic'
 class ApiController < ApplicationController
   def get_html
     url = params[:url]
@@ -7,7 +8,6 @@ class ApiController < ApplicationController
     doc.css('img').each do |image|
       images.push(image['src'])
     end
-
     # render :text => doc, :layout => false
     render json: {
         title: title,
@@ -38,5 +38,12 @@ class ApiController < ApplicationController
           }
       }
     end
+  end
+  def extract_time
+    p params
+    text = params[:text]
+    render json: {
+        response: Chronic.parse(text)
+    }
   end
 end

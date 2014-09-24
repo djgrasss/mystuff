@@ -1,4 +1,6 @@
 Engex::Application.routes.draw do
+  resources :events
+
   resources :items
   resources :texts
   resources :images
@@ -20,9 +22,11 @@ Engex::Application.routes.draw do
   resources :api, :defaults => { :format => 'json' } do
     collection do
       get 'get_html'
-      post 'get_html'
       get 'notifications_count'
       get 'check_signin'
+
+      post 'get_html'
+      post 'extract_time'
     end
   end
 

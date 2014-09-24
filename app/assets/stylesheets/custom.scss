@@ -59,10 +59,13 @@ form {
 
 
 .navbar {
-  background-color: #415e9b;
+  background-color: #003663;
   .navbar-brand {
     font-weight: 500;
     color: #f9f9f9;
+    img{
+      height: 100%;
+    }
   }
   .navbar-nav > {
     li > a {
