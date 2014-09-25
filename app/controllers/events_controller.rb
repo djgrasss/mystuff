@@ -4,12 +4,24 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    @events = Event.all;
+    @events_ajax=Event.find_by_sql("select id, title, datetime as start from Events");
+    respond_to do |format|
+      format.html{
+      }
+
+      format.json {
+        ret = @events_ajax.as_json
+        render json: ret
+      }
+    end
   end
 
   # GET /events/1
   # GET /events/1.json
   def show
+
+
   end
 
   # GET /events/new
