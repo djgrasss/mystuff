@@ -4,7 +4,6 @@ class ImagesController < ApplicationController
 
   def create
     @image = Image.new(image_params)
-    p @image
     respond_to do |format|
       if @image.save
         format.html{
@@ -24,7 +23,8 @@ class ImagesController < ApplicationController
         format.html{ render 'new'  }
         format.json {
           render json: {
-            status_code:  1
+            status_code:  1,
+            errors: @image.errors
           }
         }
       end

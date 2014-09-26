@@ -16,7 +16,7 @@ class ApiController < ApplicationController
     }
   end
   def mystuff
-  endt
+  end
   def check_signin
     render json: {
         response:{
@@ -49,7 +49,7 @@ class ApiController < ApplicationController
     end
     render json: {
         response: {
-            datetime: extracted_time.strftime("%Y/%m/%d %H:%M")
+            datetime: extracted_time.strftime("%Y-%m-%d %H:%M")
 
         }
     }

@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  protect_from_forgery :except => [:create]
 
   # GET /events
   # GET /events.json
@@ -20,8 +21,6 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-
-
   end
 
   # GET /events/new
@@ -36,16 +35,35 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    @event = Event.new(event_params)
-
     respond_to do |format|
-      if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @event }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
+      @event = Event.new(event_params)
+      format.html {
+        if @event.save
+          redirect_to @event, notice: 'Event was successfully created.'
+        else
+          render action: 'new'
+        end
+      }
+      format.json {
+        p event_params
+        datetime_str =  event_params[:datetime]
+        p  "fengjie#{datetime_str}"
+        event_params[:datetime] = Date.strptime(datetime_str, "%Y-%m-%d %H:%M")
+        @event = Event.new(event_params)
+        if @event.save
+          render json: {
+              status_code:  0,
+              response:{
+                  created_url: (url_for @event)
+              }
+          }
+        else
+          render json: {
+              status_code: 1,
+              errors: @event.errors,
+          }
+        end
+      }
     end
   end
 
