@@ -4,7 +4,7 @@ class ApiController < ApplicationController
   def get_html
     url = params[:url]
     doc = Nokogiri::HTML(open(url))
-    title = doc.css('title')[0].text
+    title = doc.css('title')[0].tex
     images = []
     doc.css('img').each do |image|
       images.push(image['src'])
@@ -16,7 +16,7 @@ class ApiController < ApplicationController
     }
   end
   def mystuff
-  end
+  endt
   def check_signin
     render json: {
         response:{
