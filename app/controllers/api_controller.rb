@@ -1,5 +1,6 @@
 require 'chronic'
 class ApiController < ApplicationController
+  protect_from_forgery :except => [:extract_time]
   def get_html
     url = params[:url]
     doc = Nokogiri::HTML(open(url))
@@ -42,8 +43,15 @@ class ApiController < ApplicationController
   def extract_time
     p params
     text = params[:text]
+    extracted_time = Chronic.parse(text)
+    if extracted_time.nil?
+      extracted_time = Time.now
+    end
     render json: {
-        response: Chronic.parse(text)
+        response: {
+            datetime: extracted_time.strftime("%Y/%m/%d %H:%M")
+
+        }
     }
   end
 end

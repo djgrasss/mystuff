@@ -1,4 +1,5 @@
 class ImagesController < ApplicationController
+  before_action :signed_in_user, only: [:edit, :update, :index, :create]
   protect_from_forgery :except => [:create]
 
   def create
@@ -13,15 +14,17 @@ class ImagesController < ApplicationController
         format.json {
           image_url = url_for @image
           render json: {
-            :status_code => 1,
-            :image_url => image_url
+            status_code:  0,
+            response:{
+              image_url: image_url
+            }
           }
         }
       else
         format.html{ render 'new'  }
         format.json {
           render json: {
-            :status_code => 2
+            status_code:  1
           }
         }
       end

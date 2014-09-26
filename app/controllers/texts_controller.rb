@@ -1,4 +1,5 @@
 class TextsController < ApplicationController
+  before_action :signed_in_user, only: [:edit, :update, :index, :create]
   protect_from_forgery :except => [:create]
   before_action :set_text, only: [:new]
   def show
