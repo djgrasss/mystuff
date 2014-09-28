@@ -2,7 +2,16 @@
 // All this logic will automatically be available in application.js.
 $(document).ready(function(){
     $('#calendar').fullCalendar({
-        defaultDate: '2014-09-12',
+        header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay'
+        },
+        selectable: true,
+        selectHelper: true,
+        select: function(start, end) {
+
+        },
         editable: true,
         eventLimit: true,
         height:500,
