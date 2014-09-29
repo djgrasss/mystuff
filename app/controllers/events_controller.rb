@@ -6,11 +6,10 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = Event.all;
-    @events_ajax=Event.find_by_sql("select id, title, datetime as start from Events");
+    @events_ajax=Event.find_by_sql("select id, title, begin_datetime as start, end_datetime as end from Events");
     respond_to do |format|
       format.html{
       }
-
       format.json {
         ret = @events_ajax.as_json
         render json: ret
@@ -99,6 +98,6 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:title, :datetime, :description)
+      params.require(:event).permit(:title, :datetime, :description, :begin_datetime, :end_datetime)
     end
 end
