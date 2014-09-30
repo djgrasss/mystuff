@@ -1,3 +1,51 @@
+$hoppy-color: #001978;
+
+.team-profile{
+  .intro-title{
+    @extend h1;
+    @extend strong;
+  }
+  .name{
+    @extend h3;
+  }
+  .photo{
+    width: 100px;
+    padding-top: 20px;
+  }
+  .role{
+    @extend h4;
+    color: $hoppy-color;
+    font-family: "Times New Roman", Georgia, Serif;
+  }
+  .introduction{
+    @extend h5;
+  }
+  .email{
+    margin: 8px 0px;
+  }
+}
+
+
+
+.intro-sec{
+  background: #D7DBEB;
+  margin: 5px;
+  .intro-title{
+    @extend h1;
+    @extend strong;
+  }
+  .intro-text{
+    @extend h4;
+  }
+}
+
+.intro-sec-sec{
+  margin-left: 20px;
+  .intro-title {
+    @extend h2;
+  }
+}
+
 .middle-half{
     @extend .col-md-6;
     @extend .col-md-offset-3;
@@ -59,7 +107,7 @@ form {
 
 
 .navbar {
-  background-color: #001978;
+  background-color: $hoppy-color;
   .navbar-brand {
     font-weight: 500;
     color: #f9f9f9;

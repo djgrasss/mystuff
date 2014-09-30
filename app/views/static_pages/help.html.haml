@@ -1,11 +1,43 @@
 - provide(:title, 'Help')
-%h1 Install Chrome Plugin
 
-%a{:href => "https://chrome.google.com/webstore/detail/hoppy/eddmejagpflgknmjdpafnogilmflhnjd"}> Hoppy
-%p
-  Get help on the Ruby on Rails Tutorial at the
-  %a{:href => "http://railstutorial.org/help"}> Rails Tutorial help page
-  \.
-  To get help on this sample app, see the
-  %a{:href => "http://railstutorial.org/book"}> Rails Tutorial book
-  \.
+
+.intro-sec
+  .intro-title Install
+  .intro-sec-sec
+    .intro-title Chrome Plugin
+    %ul
+      %li.intro-text
+        Install hoppy's chrome plugin by this &nbsp
+        %a{:href => "https://chrome.google.com/webstore/detail/hoppy/eddmejagpflgknmjdpafnogilmflhnjd"}> link
+
+
+
+.intro-sec
+  .intro-title Play
+  .intro-sec-sec
+    .intro-title Image
+    %ul
+      %li.intro-text Click plugin
+      =image_tag("intro_click_plugin.png", alt: "HOPPY")
+      %li.intro-text Select whatever image you like and then click "Save it".
+      %li.intro-text The image should be collected into your personal account.
+
+
+    .intro-title Text
+    %ul
+      %li.intro-text Select a piece of text at any page and right on that selected text.
+      %li.intro-text Choose <b>hoppy</b>, then choose <b>[HOPPY]Collect Text</b>.
+      %li.intro-text Click. Then the text is saved.
+
+    .intro-title Event(Calendar)
+    %ul
+      %li.intro-text Select a piece of text which contains an event, for example, "lets have meeting tomorrow from 6:00PM to 8:00PM"
+      %li.intro-text Choose <b>hoppy</b>, then choose <b>[HOPPY]Collect Event</b>.
+      %li.intro-text The selected text will parsed by NLP library to begin time and end time of this event.
+      %li.intro-text A form should be poped up with parsed information for you to double check.
+      %li.intro-text After you have verified and corrected the information in that form, click "Add Event"
+      %li.intro-text The event should be created at your personal calendar now!
+
+
+.intro-sec
+  .intro-title Too be continued.
