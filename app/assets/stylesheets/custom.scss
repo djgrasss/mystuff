@@ -26,6 +26,12 @@ $hoppy-color: #001978;
   .email{
     margin: 8px 0px;
   }
+  .education{
+    .department{
+      @extend small;
+      margin-top: -1px;
+    }
+  }
 }
 
 
