@@ -1,6 +1,9 @@
 $hoppy-color: #001978;
 
 .team-profile{
+  .member{
+    margin-bottom: 100px;
+  }
   .intro-title{
     @extend h1;
     @extend strong;
