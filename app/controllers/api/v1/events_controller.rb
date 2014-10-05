@@ -6,15 +6,7 @@ module Api::V1
       render json: params.to_json
     end
     def index
-      render json: {
-          fuck: "bitch"
-      }
+      render json: Event.find(1).to_json();
     end
-    def haha
-      render json: {
-          fuck: "bitch"
-      }
-    end
-
   end
 end

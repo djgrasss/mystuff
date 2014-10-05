@@ -1,0 +1,116 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/home/john/.nvm/v0.11.13/bin/node',
+1 verbose cli   '/home/john/.nvm/v0.11.13/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'moment',
+1 verbose cli   '--save' ]
+2 info using npm@1.4.9
+3 info using node@v0.11.13
+4 verbose cache add [ 'moment', null ]
+5 verbose cache add name=undefined spec="moment" args=["moment",null]
+6 verbose parsed url { protocol: null,
+6 verbose parsed url   slashes: null,
+6 verbose parsed url   auth: null,
+6 verbose parsed url   host: null,
+6 verbose parsed url   port: null,
+6 verbose parsed url   hostname: null,
+6 verbose parsed url   hash: null,
+6 verbose parsed url   search: null,
+6 verbose parsed url   query: null,
+6 verbose parsed url   pathname: 'moment',
+6 verbose parsed url   path: 'moment',
+6 verbose parsed url   href: 'moment' }
+7 silly lockFile b56def36-moment moment
+8 verbose lock moment /home/john/.npm/b56def36-moment.lock
+9 silly lockFile b56def36-moment moment
+10 silly lockFile b56def36-moment moment
+11 verbose addNamed [ 'moment', '' ]
+12 verbose addNamed [ null, '*' ]
+13 silly lockFile 42aa250a-moment moment@
+14 verbose lock moment@ /home/john/.npm/42aa250a-moment.lock
+15 silly addNameRange { name: 'moment', range: '*', hasData: false }
+16 verbose url raw moment
+17 verbose url resolving [ 'https://registry.npmjs.org/', './moment' ]
+18 verbose url resolved https://registry.npmjs.org/moment
+19 info trying registry request attempt 1 at 00:21:10
+20 http GET https://registry.npmjs.org/moment
+21 http 200 https://registry.npmjs.org/moment
+22 silly registry.get cb [ 200,
+22 silly registry.get   { date: 'Sun, 05 Oct 2014 04:21:11 GMT',
+22 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+22 silly registry.get     etag: '"7657K7R9E9VJ65ZM5K0J22GHG"',
+22 silly registry.get     'content-type': 'application/json',
+22 silly registry.get     'cache-control': 'max-age=60',
+22 silly registry.get     'content-length': '47455',
+22 silly registry.get     'accept-ranges': 'bytes',
+22 silly registry.get     via: '1.1 varnish',
+22 silly registry.get     age: '1875',
+22 silly registry.get     'x-served-by': 'cache-atl6227-ATL',
+22 silly registry.get     'x-cache': 'HIT',
+22 silly registry.get     'x-cache-hits': '1',
+22 silly registry.get     'x-timer': 'S1412482871.049129,VS0,VE314',
+22 silly registry.get     vary: 'Accept',
+22 silly registry.get     connection: 'close' } ]
+23 silly addNameRange number 2 { name: 'moment', range: '*', hasData: true }
+24 silly addNameRange versions [ 'moment',
+24 silly addNameRange   [ '1.0.0',
+24 silly addNameRange     '1.0.1',
+24 silly addNameRange     '1.1.0',
+24 silly addNameRange     '1.1.1',
+24 silly addNameRange     '1.2.0',
+24 silly addNameRange     '1.3.0',
+24 silly addNameRange     '1.4.0',
+24 silly addNameRange     '1.5.0',
+24 silly addNameRange     '1.5.1',
+24 silly addNameRange     '1.6.0',
+24 silly addNameRange     '1.6.1',
+24 silly addNameRange     '1.6.2',
+24 silly addNameRange     '1.7.0',
+24 silly addNameRange     '1.7.1',
+24 silly addNameRange     '1.7.2',
+24 silly addNameRange     '2.0.0',
+24 silly addNameRange     '2.1.0',
+24 silly addNameRange     '2.2.1',
+24 silly addNameRange     '2.3.0',
+24 silly addNameRange     '2.3.1',
+24 silly addNameRange     '2.4.0',
+24 silly addNameRange     '2.5.0',
+24 silly addNameRange     '2.5.1',
+24 silly addNameRange     '2.6.0',
+24 silly addNameRange     '2.7.0',
+24 silly addNameRange     '2.8.1',
+24 silly addNameRange     '2.8.2',
+24 silly addNameRange     '2.8.3' ] ]
+25 verbose addNamed [ 'moment', '2.8.3' ]
+26 verbose addNamed [ '2.8.3', '2.8.3' ]
+27 silly lockFile 707ecd2d-moment-2-8-3 moment@2.8.3
+28 verbose lock moment@2.8.3 /home/john/.npm/707ecd2d-moment-2-8-3.lock
+29 silly lockFile d4397d1b-pmjs-org-moment-moment-2-8-3-tgz https://registry.npmjs.org/moment/-/moment-2.8.3.tgz
+30 verbose lock https://registry.npmjs.org/moment/-/moment-2.8.3.tgz /home/john/.npm/d4397d1b-pmjs-org-moment-moment-2-8-3-tgz.lock
+31 verbose addRemoteTarball [ 'https://registry.npmjs.org/moment/-/moment-2.8.3.tgz',
+31 verbose addRemoteTarball   'a01427bf8910f014fc4baa1b8d96f17f7e3f29a2' ]
+32 silly lockFile d4397d1b-pmjs-org-moment-moment-2-8-3-tgz https://registry.npmjs.org/moment/-/moment-2.8.3.tgz
+33 silly lockFile d4397d1b-pmjs-org-moment-moment-2-8-3-tgz https://registry.npmjs.org/moment/-/moment-2.8.3.tgz
+34 silly lockFile 707ecd2d-moment-2-8-3 moment@2.8.3
+35 silly lockFile 707ecd2d-moment-2-8-3 moment@2.8.3
+36 silly lockFile 42aa250a-moment moment@
+37 silly lockFile 42aa250a-moment moment@
+38 error Error: EACCES, mkdir '/home/john/tmp/npm-8562-AF0pG5lV'
+38 error     at Error (native)
+38 error  { [Error: EACCES, mkdir '/home/john/tmp/npm-8562-AF0pG5lV']
+38 error   stack: 'Error: EACCES, mkdir \'/home/john/tmp/npm-8562-AF0pG5lV\'\n    at Error (native)',
+38 error   errno: -13,
+38 error   code: 'EACCES',
+38 error   path: '/home/john/tmp/npm-8562-AF0pG5lV' }
+39 error Please try running this command again as root/Administrator.
+40 error System Linux 3.16.0-031600-generic
+41 error command "/home/john/.nvm/v0.11.13/bin/node" "/home/john/.nvm/v0.11.13/bin/npm" "install" "moment" "--save"
+42 error cwd /home/john/RubymineProjects/mystuff
+43 error node -v v0.11.13
+44 error npm -v 1.4.9
+45 error path /home/john/tmp/npm-8562-AF0pG5lV
+46 error code EACCES
+47 error errno -13
+48 error stack Error: EACCES, mkdir '/home/john/tmp/npm-8562-AF0pG5lV'
+48 error stack     at Error (native)
+49 verbose exit [ -13, true ]
