@@ -16,12 +16,16 @@ $(document).ready(function(){
         eventLimit: true,
         height:500,
         events: "events",
-        dayClick: function(date, allDay, jsEvent, view) {
-            // change the day's background color just for fun
-            $('#calendar').fullCalendar('changeView', 'agendaDay');
-            $('#calendar').fullCalendar('gotoDate', date);
-        },
+        eventClick: function(calEvent, jsEvent, view) {
 
+            var $cmodal=$('#calendar-modal');
+            $cmodal.find('#title').val(calEvent.title);
+            $cmodal.find('#description').val(calEvent.description);
+            $cmodal.find('#stime').val(calEvent.start);
+            $cmodal.find('#etime').val(calEvent.end);
+            $cmodal.modal('show');
+            $('#cal')
+        },
         eventDrop: function(event, delta, revertFunc) {
             console.log(event);
             console.log(delta);
@@ -31,5 +35,13 @@ $(document).ready(function(){
             }
         }
 
+    });
+
+    $('#calendar-modal save').click(function(){
+        $.ajax({
+            //url: ,
+
+        });
+        alert("svae");
     });
 });
