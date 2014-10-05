@@ -1,6 +1,5 @@
 Engex::Application.routes.draw do
   resources :events
-
   resources :items
   resources :texts
   resources :images
@@ -30,6 +29,35 @@ Engex::Application.routes.draw do
     end
   end
 
+  #constraints subdomain: 'api' do #, 
+  scope module: 'api', defaults: {:format => 'json'} do
+    namespace :v1 do
+      resources :events do
+        collection do
+          get :haha
+        end
+      end
+    end
+  end
+  #namespace :admin do
+  #  resources :posts, :comments
+  #end
+  #resources :posts, module: 'admin'
+  
+  # If you want to route /posts (without the prefix /admin) to 
+  # Admin::PostsController, you could use
+  #scope module: 'admin' do
+  #  resources :posts, :comments
+  #end
+  #or 
+  #resources :posts, module: 'admin'
+  #
+  #/admin/posts to PostsController
+  #
+
+  
+
+ 
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
