@@ -14,7 +14,8 @@
 //= require jquery_ujs
 //= require jquery-ui/core
 //= require jquery-ui/widget
-//= require custom
+//= require moment
+//= require common
 //= require turbolinks
 //= require bootstrap.min
 //= require waterfall.min.js
@@ -23,5 +24,5 @@
 //= require jquery.mousewheel-3.0.6.pack.js
 //= require vendor
 //= require jquery.fileupload
-//= require moment
 //= require jquery.datetimepicker
+//= require custom

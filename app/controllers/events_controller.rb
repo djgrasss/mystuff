@@ -6,7 +6,7 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = Event.all;
-    @events_ajax=Event.find_by_sql("select id, title, begin_datetime as start, end_datetime as end from Events");
+    @events_ajax=Event.select("id, title, description, begin_datetime as start, end_datetime as end");
     respond_to do |format|
       format.html{
       }
@@ -44,10 +44,6 @@ class EventsController < ApplicationController
         end
       }
       format.json {
-        p event_params
-        datetime_str =  event_params[:datetime]
-        p  "fengjie#{datetime_str}"
-        event_params[:datetime] = Date.strptime(datetime_str, "%Y-%m-%d %H:%M")
         @event = Event.new(event_params)
         if @event.save
           render json: {
@@ -72,10 +68,14 @@ class EventsController < ApplicationController
     respond_to do |format|
       if @event.update(event_params)
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
-        format.json { head :no_content }
+        format.json { render json:{status_code: 0}  }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
+        format.json { render json: {
+            message: @event.errors,
+            status_code: 1
+          }
+        }
       end
     end
   end
@@ -83,10 +83,21 @@ class EventsController < ApplicationController
   # DELETE /events/1
   # DELETE /events/1.json
   def destroy
-    @event.destroy
+    destroyed = @event.destroy
     respond_to do |format|
       format.html { redirect_to events_url }
-      format.json { head :no_content }
+      format.json {
+        if destroyed
+          render json:{
+              status_code: 0
+          }
+        else
+          render json:{
+              status_code: 1,
+              message: @event.errors
+          }
+        end
+      }
     end
   end
 

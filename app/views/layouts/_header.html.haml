@@ -27,7 +27,31 @@
           = link_to "Text", texts_path
         %li
           = link_to "Calendar", events_path
+
+        %li.dropdown
+          %a.dropdown-toggle{"data-toggle" => "dropdown", :href => events_path}
+            Calendar
+            %b.caret
+          %ul.dropdown-menu
+            %li
+              %a{"data-toggle" => "modal", "data-target" => "#calendar-add-modal"} Add
       %ul.nav.navbar-nav.navbar-right
         = render 'layouts/signin'
     / /.navbar-collapse
   / /.container
+
+
+
+#calendar-add-modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} &times;
+          %span.sr-only Close
+        %h4#myModalLabel.modal-title Modal title
+      .modal-body
+        = render 'events/form'
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+        %button#add.btn.btn-primary{:type => "button"} Add
