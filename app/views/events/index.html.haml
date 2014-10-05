@@ -1,20 +1,6 @@
 %h1 Listing events
 
-= link_to 'New Event', new_event_path
-
 #calendar
 
-#calendar-modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
-  .modal-dialog
-    .modal-content
-      .modal-header
-        %button.close{"data-dismiss" => "modal", :type => "button"}
-          %span{"aria-hidden" => "true"} &times;
-          %span.sr-only Close
-        %h4#myModalLabel.modal-title Modal title
-      .modal-body
-        = render 'form'
-      .modal-footer
-        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
-        %button#save.btn.btn-primary{:type => "button"} Save changes
-        %button#delete.btn.btn-primary{:type => "button"} Delete
+
+=render 'update_event_modal'

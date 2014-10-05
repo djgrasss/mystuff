@@ -226,6 +226,7 @@ $(document).ready(function(){
             }
         })
     });
+
     $('#calendar-modal #delete').click(function(){
         var event_id = $('#calendar-modal').attr("event-id");
         $.ajax({

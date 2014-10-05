@@ -1,5 +1,5 @@
 Engex::Application.routes.draw do
-  resources :events
+  resources :events, except: [:new]
   resources :items
   resources :texts
   resources :images
