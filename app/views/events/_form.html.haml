@@ -1,19 +1,5 @@
-= form_for @event do |f|
-  - if @event.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@event.errors.count, "error")} prohibited this event from being saved:"
-      %ul
-        - @event.errors.full_messages.each do |msg|
-          %li= msg
+%input#title.form-control{:placeholder => "Title", :type => "text"}
+%input#description.form-control{:placeholder => "Description", :type => "text"}
+%input#stime.form-control{:placeholder => "Start Time", :type => "text", class: "dpicker"}
+%input#etime.form-control{:placeholder => "End Time", :type => "text", class: "dpicker"}
 
-  .field
-    = f.label :title
-    = f.text_field :title
-  .field
-    = f.label :datetime
-    = f.datetime_select :datetime
-  .field
-    = f.label :description
-    = f.text_area :description
-  .actions
-    = f.submit 'Save'

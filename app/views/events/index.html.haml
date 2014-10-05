@@ -13,10 +13,7 @@
           %span.sr-only Close
         %h4#myModalLabel.modal-title Modal title
       .modal-body
-        %input#title.form-control{:placeholder => "Title", :type => "text"}
-          %input#description.form-control{:placeholder => "Description", :type => "text"}
-            %input#stime.form-control{:placeholder => "Start Time", :type => "text"}
-              %input#etime.form-control{:placeholder => "End Time", :type => "text"}
+        = render 'form'
       .modal-footer
         %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
         %button#save.btn.btn-primary{:type => "button"} Save changes

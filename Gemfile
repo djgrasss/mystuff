@@ -15,6 +15,9 @@ gem 'active_record-acts_as'
 gem 'chronic'
 gem 'aws-sdk'
 gem 'paperclip'
+# jquery and javascript
+gem 'momentjs-rails', '~> 2.8.3'
+gem 'jquery-datetimepicker-rails', '~> 2.3.0.0'
 
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes

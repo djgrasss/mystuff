@@ -23,3 +23,5 @@
 //= require jquery.mousewheel-3.0.6.pack.js
 //= require vendor
 //= require jquery.fileupload
+//= require moment
+//= require jquery.datetimepicker

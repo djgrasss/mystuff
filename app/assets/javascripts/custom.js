@@ -128,4 +128,11 @@ $(document).ready(function(){
         width: 500,
         height: 500
     });
+    $('.dpicker').datetimepicker({
+        format:'Y-m-d H:i',
+        onShow: function() {
+        }
+    });
 });
+
+
