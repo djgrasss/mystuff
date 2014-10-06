@@ -38,14 +38,12 @@ function txt_wrap(){
 }
 
 function tofu_bind() {
-    console.log("hah");
     $('.delete-item').on('click', function() {
         $('#item_delete_modal').attr({
             'item-id': $(this).attr('item-id')
         });
     });
 }
-
 
 function fancybox() {
     $(".fancybox-thumbs").click(function(e){

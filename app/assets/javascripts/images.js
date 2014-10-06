@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $('#container').waterfall({
+    $('#images-container').waterfall({
         itemCls: 'item',
         colWidth:222,
         gutterWidth:15,
@@ -13,11 +13,6 @@ $(document).ready(function(){
                     $loading.hide();
                     $('#page-navigation').show();
                 }
-                /*
-                 $("img").onload=function(){
-                 console.log('hi');
-                 //$(this).resize();
-                 }*/
                 var count=0;
                 var eruption=function() {
                     if (count<10) {

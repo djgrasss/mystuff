@@ -1,8 +1,5 @@
-// Place all the behaviors and hooks related to the matching controller here.
-// All this logic will automatically be available in application.js.
-
 $(document).ready(function(){
-    $('#container').waterfall({
+    $('#items-container').waterfall({
         itemCls: 'item',
         colWidth:222,
         gutterWidth:15,
@@ -16,7 +13,6 @@ $(document).ready(function(){
                     $loading.hide();
                     $('#page-navigation').show();
                 }
-
                 var count=0;
                 var eruption=function() {
                     if (count<10) {
@@ -33,14 +29,6 @@ $(document).ready(function(){
             },
             renderData: function (data, dataType) {
                 var tpl,template;
-//                data['image'].each(function(key, value){
-//                })
-//                var result = $.merge(data['image'], data['text']);
-//                result.sort(function(item1, item2){
-//                    return item1["id"] - item2["id"]
-//                })
-                console.log(JSON.stringify(data))
-//                data['result'] = result
                 if ( dataType === 'json' ||  dataType === 'jsonp'  ) { // json or jsonp format
                     if ( data.total < 20) {
                         //setTimeout(function() {
@@ -50,7 +38,6 @@ $(document).ready(function(){
                         });
                         // },500);
                     }
-
                     tpl = $('#waterfall-tpl').html();
                     template = Handlebars.compile(tpl);
                     return template(data);

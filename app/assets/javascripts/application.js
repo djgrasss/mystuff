@@ -18,7 +18,6 @@
 //= require common
 //= require turbolinks
 //= require bootstrap.min
-//= require waterfall.min.js
 //= require handlebars.js
 //= require modal
 //= require jquery.mousewheel-3.0.6.pack.js
