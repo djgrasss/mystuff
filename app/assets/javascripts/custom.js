@@ -127,12 +127,10 @@ $(document).ready(function(){
                 $cmodal.modal('show');
             },
             eventDrop: function(event, delta, revertFunc) {
-                console.log(event);
-                console.log(delta);
-                alert(event.title + " was dropped on " + event.start.format());
-                if (!confirm("Are you sure about this change?")) {
-                    revertFunc();
-                }
+                eventChange(event);
+            },
+            eventResize: function(event, delta, revertFunc) {
+                eventChange(event);
             },
             dayClick: function(date, allDay, jsEvent, view) {
                 // change the day's background color just for fun
@@ -141,6 +139,44 @@ $(document).ready(function(){
             }
 
         });
+
+        function eventChange(event) {
+            var start=event.start;
+            if (start)
+                start=event_back_format(start.format());
+            var end=event.end;
+            if (end)
+                end=event_back_format(end.format());
+            var id=event.id;
+            var _event = {};
+            _event.id=id;
+            _event.title=event.title;
+            _event.description=event.description;
+            _event.begin_datetime=start;
+            _event.end_datetime=end;
+            $.ajax({
+                url: "/events/"+id,
+                type: "post",
+                dataType: "json",
+                data: {
+                    _method: "patch",
+                    event: _event
+                },
+                success: function (data) {
+                    if (data.status_code==0) {
+
+                    } else {
+                        revertFunc();
+                    }
+                },
+                error: function(){
+                    revertFunc();
+                }
+            });
+        }
+
+
+
         $('#calendar-modal #save').click(function(){
             var event_id = $('#calendar-modal').attr("event-id");
             var $cmodal=$('#calendar-modal');
@@ -213,6 +249,43 @@ $(document).ready(function(){
                     alert("error");
                 }
             })
+        });
+
+        $calendar_add_modal.find("#stime").change(function(){
+            var startTime=$(this).val();
+            if (startTime==null || startTime=="") {
+                return;
+            } else {
+                startTime=moment(startTime);
+                var $end=$calendar_add_modal.find("#etime");
+                var endTime=$end.val();
+                if (endTime==null || endTime=="" || startTime>moment(endTime)) {
+                    endTime=startTime.add(1, "hours");
+                    $end.val(event_front_format(endTime.format()));
+                }
+            }
+        });
+
+        $calendar_add_modal.find("#etime").change(function(){
+            var endTime=$(this).val();
+            if (endTime==null || endTime=="") {
+                return;
+            } else {
+                endTime=moment(endTime);
+                var $start=$calendar_add_modal.find("#stime");
+                var startTime=$start.val();
+                if (startTime==null || startTime=="" || moment(startTime)>endTime) {
+                    startTime=endTime.add(-1, "hours");
+                    $start.val(event_front_format(startTime.format()));
+                }
+            }
+        });
+
+        $calendar_add_modal.on('show.bs.modal', function(){
+            $calendar_add_modal.find("#title").val("");
+            $calendar_add_modal.find("#description").val("");
+            $calendar_add_modal.find("#stime").val("");
+            $calendar_add_modal.find("#etime").val("");
         });
     }
 });
