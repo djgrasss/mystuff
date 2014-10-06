@@ -155,119 +155,121 @@ $(document).ready(function(){
 
 
 $(document).ready(function(){
-    var event_selected;
-    var $calendar = $('#calendar');
-    $calendar.fullCalendar({
-        header: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'month,agendaWeek,agendaDay'
-        },
-        selectable: true,
-        selectHelper: true,
-        select: function(start, end) {
-        },
-        editable: true,
-        eventLimit: true,
-        height:500,
-        events: "events",
-        eventClick: function(calEvent, jsEvent, view) {
+    calendar_bind=function(){
+        var event_selected;
+        var $calendar = $('#calendar');   $calendar.fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            },
+            selectable: true,
+            selectHelper: true,
+            select: function(start, end) {
+            },
+            editable: true,
 
-            event_selected = calEvent;
+            eventLimit: true,
+            height:500,
+            events: "events",
+            eventClick: function(calEvent, jsEvent, view) {
+
+                event_selected = calEvent;
+                var $cmodal=$('#calendar-modal');
+                $cmodal.attr("event-id", calEvent.id);
+                $cmodal.find('#title').val(calEvent.title);
+                $cmodal.find('#description').val(calEvent.description);
+                $cmodal.find('#stime').val(event_front_format(calEvent.start));
+                $cmodal.find('#etime').val(event_front_format(calEvent.end));
+                $cmodal.modal('show');
+            },
+            eventDrop: function(event, delta, revertFunc) {
+                console.log(event);
+                console.log(delta);
+                alert(event.title + " was dropped on " + event.start.format());
+                if (!confirm("Are you sure about this change?")) {
+                    revertFunc();
+                }
+            },
+            dayClick: function(date, allDay, jsEvent, view) {
+                // change the day's background color just for fun
+                $('#calendar').fullCalendar('changeView', 'agendaDay');
+                $('#calendar').fullCalendar('gotoDate', date);
+            }
+
+        });
+        $('#calendar-modal #save').click(function(){
+            var event_id = $('#calendar-modal').attr("event-id");
             var $cmodal=$('#calendar-modal');
-            $cmodal.attr("event-id", calEvent.id);
-            $cmodal.find('#title').val(calEvent.title);
-            $cmodal.find('#description').val(calEvent.description);
-            $cmodal.find('#stime').val(event_front_format(calEvent.start));
-            $cmodal.find('#etime').val(event_front_format(calEvent.end));
-            $cmodal.modal('show');
-        },
-        eventDrop: function(event, delta, revertFunc) {
-            console.log(event);
-            console.log(delta);
-            alert(event.title + " was dropped on " + event.start.format());
-            if (!confirm("Are you sure about this change?")) {
-                revertFunc();
-            }
-        },
-        dayClick: function(date, allDay, jsEvent, view) {
-            // change the day's background color just for fun
-            $('#calendar').fullCalendar('changeView', 'agendaDay');
-            $('#calendar').fullCalendar('gotoDate', date);
-        }
-
-    });
-    $('#calendar-modal #save').click(function(){
-        var event_id = $('#calendar-modal').attr("event-id");
-        var $cmodal=$('#calendar-modal');
-        var event = getEventFromCalendarModal($cmodal);
-        $.ajax({
-            url: "/events/" + event_id,
-            type: "post",
-            dataType: "json",
-            data: {
-                _method: "patch",
-                event: event
-            },
-            success: function(data){
-                if (data.status_code == 0){
-                    $('#calendar-modal').modal('hide');
-                    event_selected.title = event.title;
-                    event_selected.description = event.description;
-                    event_selected.start = event.begin_datetime;
-                    event_selected.end = event.end_datetime;
-                    $calendar.fullCalendar('updateEvent', event_selected);
-                }else{
-                    alert("can't delete");
+            var event = getEventFromCalendarModal($cmodal);
+            $.ajax({
+                url: "/events/" + event_id,
+                type: "post",
+                dataType: "json",
+                data: {
+                    _method: "patch",
+                    event: event
+                },
+                success: function(data){
+                    if (data.status_code == 0){
+                        $('#calendar-modal').modal('hide');
+                        event_selected.title = event.title;
+                        event_selected.description = event.description;
+                        event_selected.start = event.begin_datetime;
+                        event_selected.end = event.end_datetime;
+                        $calendar.fullCalendar('updateEvent', event_selected);
+                    }else{
+                        alert("can't delete");
+                    }
+                },
+                error: function(){
+                    alert("error");
                 }
-            },
-            error: function(){
-                alert("error");
-            }
-        })
-    });
+            })
+        });
 
-    $('#calendar-modal #delete').click(function(){
-        var event_id = $('#calendar-modal').attr("event-id");
-        $.ajax({
-            url: "/events/" + event_id,
-            type: "post",
-            dataType: "json",
-            data: {"_method":"delete"},
-            success: function(data){
-                if (data.status_code == 0){
-                    $('#calendar-modal').modal('hide');
-                    $('#calendar').fullCalendar('removeEvents', event_id);
-                }else{
-                    alert("can't delete");
+        $('#calendar-modal #delete').click(function(){
+            var event_id = $('#calendar-modal').attr("event-id");
+            $.ajax({
+                url: "/events/" + event_id,
+                type: "post",
+                dataType: "json",
+                data: {"_method":"delete"},
+                success: function(data){
+                    if (data.status_code == 0){
+                        $('#calendar-modal').modal('hide');
+                        $('#calendar').fullCalendar('removeEvents', event_id);
+                    }else{
+                        alert("can't delete");
+                    }
+                },
+                error: function(){
+                    alert("error");
                 }
-            },
-            error: function(){
-                alert("error");
-            }
-        })
-    });
+            })
+        });
 
-    var $calendar_add_modal =  $('#calendar-add-modal');
-    $calendar_add_modal.find('#add').click(function(){
-        var event = getEventFromCalendarModal($calendar_add_modal);
-        $.ajax({
-            url: "/events",
-            type: "post",
-            dataType: "json",
-            data: {
-                event: event
-            },
-            success: function(data){
-                if (data.status_code == 0){
-                    $calendar_add_modal.modal('hide');
-                }else{
-                    alert("can't add");
+        var $calendar_add_modal =  $('#calendar-add-modal');
+        $calendar_add_modal.find('#add').click(function(){
+            var event = getEventFromCalendarModal($calendar_add_modal);
+            $.ajax({
+                url: "/events",
+                type: "post",
+                dataType: "json",
+                data: {
+                    event: event
+                },
+                success: function(data){
+                    if (data.status_code == 0){
+                        $calendar_add_modal.modal('hide');
+                    }else{
+                        alert("can't add");
+                    }
+                },
+                error: function(){
+                    alert("error");
                 }
-            },
-            error: function(){
-                alert("error");
-            }
-        })
-    });
+            })
+        });
+    }
 });
