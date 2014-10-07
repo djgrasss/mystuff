@@ -1,4 +1,4 @@
-= form_for(@image, html: { class: "directUpload" }) do |f|
+= form_for(@image, html: { class: "directUploadForm" }) do |f|
   = render partial: 'shared/error_messages', locals:{obj:@image}
   = hidden_field_tag('s3_direct_post_url_host', @s3_direct_post.url.host)
   = hidden_field_tag('s3_direct_post_url', @s3_direct_post.url)

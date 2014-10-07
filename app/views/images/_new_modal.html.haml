@@ -5,9 +5,28 @@
         %button.close{"data-dismiss" => "modal", :type => "button"}
           %span{"aria-hidden" => "true"} &times;
           %span.sr-only Close
-        %h4#myModalLabel.modal-title Modal title
+        %h4#myModalLabel.modal-title Add New Image
       .modal-body
-        = render 'new_form'
+        %form{role: "form"}
+          %input#image_title.form-control{:placeholder => "Title", :name => "image[title]", :type => "text"}
+          %input#image_description.form-control{:placeholder => "Description", :name => "image[description]", :type => "text"}
+          %input#image_image_url.form-control{:placeholder => "Url", :name => "image[image_url]", :type => "file"}
+            .progress
+              .bar{:style => "height: 1.5em;"}
       .modal-footer
         %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
         %button#add.btn.btn-primary{:type => "button"} Add
+
+#add-image-finished-modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} &times;
+          %span.sr-only Close
+        %h4#myModalLabel.modal-title Your image has been uploaded!
+      .modal-body
+        Your image can be found
+        %a{target: "_blank"}here!
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close

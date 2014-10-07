@@ -50,7 +50,9 @@ $(document).ready(function(){
             return '/images.json?page='+page;
         }
     });
-    $('.directUpload').find("input:file").each(function(i, elem) {
+
+
+    $('.directUploadForm').find("input:file").each(function(i, elem) {
         var fileInput    = $(elem);
         var form         = $(fileInput.parents('form:first'));
         var submitButton = form.find('input[type="submit"]');
@@ -77,7 +79,6 @@ $(document).ready(function(){
             },
             start: function (e) {
                 submitButton.prop('disabled', true);
-
                 progressBar.
                     css('background', 'green').
                     css('display', 'block').
@@ -88,11 +89,7 @@ $(document).ready(function(){
                 submitButton.prop('disabled', false);
                 progressBar.text("Uploading done");
 
-                // extract key and generate URL from response
                 var url = $(data.jqXHR.responseXML).find("Location").text();
-                //var url   = '//' + url_host + '/' + key;
-
-                // create hidden field
                 var input = $("<input />", { type:'hidden', name: fileInput.attr('name'), value: url });
                 form.append(input);
             },

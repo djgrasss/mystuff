@@ -1,6 +1,19 @@
 $hoppy-color: #001978;
 
 
+.directUploadForm{
+  @extend .middle-half;
+  .field{
+    /*@extend .col-md-6;*/
+  }
+  .progress{
+    margin-bottom: 20px;
+  }
+  .btn-primary{
+    @extend .middle-half;
+  }
+}
+
 .hoverdown-menu{
   display: none;
 }
@@ -103,18 +116,6 @@ body {
 }
 
 
-form {
-    @extend .middle-half;
-    .field{
-        /*@extend .col-md-6;*/
-    }
-    .progress{
-        margin-bottom: 20px;
-    }
-    .btn-primary{
-        @extend .middle-half;
-    }
-}
 
 .item-image {
   width:222px;

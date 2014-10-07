@@ -34,11 +34,11 @@ Engex::Application.routes.draw do
     namespace :v1 do
       resources :events do
         collection do
-          get :haha
         end
       end
       resources :images do
         collection do
+          get :new_aws_params
         end
       end
     end

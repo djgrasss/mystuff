@@ -22,16 +22,21 @@
         %li
           = link_to "All", items_path
         %li
-          = link_to "Image", images_path
-        %li
           = link_to "Text", texts_path
+        %li.dropdown.hoverdown-menu
+          = link_to "Image", images_path
+          %ul.dropdown-menu
+            %li
+              %a{"data-toggle" => "modal", "data-target" => "#add-image-modal"} Add
+
         %li.dropdown.hoverdown-menu
           = link_to "Calendar", events_path
           %ul.dropdown-menu
             %li
-              %a{"data-toggle" => "modal", "data-target" => "#calendar-add-modal"} Add
+              %a{"data-toggle" => "modal", "data-target" => "#add-event-modal"} Add
       %ul.nav.navbar-nav.navbar-right
         = render 'layouts/signin'
     / /.navbar-collapse
   / /.container
-= render 'events/add_event_modal'
+= render 'events/new_modal'
+= render 'images/new_modal'
