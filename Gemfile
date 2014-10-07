@@ -18,7 +18,7 @@ gem 'paperclip'
 # jquery and javascript
 gem 'momentjs-rails', '~> 2.8.3'
 gem 'jquery-datetimepicker-rails', '~> 2.3.0.0'
-gem 'rqrcode_png'  
+gem 'rqrcode-with-patches'  
 
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes

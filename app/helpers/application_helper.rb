@@ -10,6 +10,6 @@ module ApplicationHelper
     end
   end
   def qr_code_data_url(url)
-    return RQRCode::QRCode.new(url).to_img.resize(700, 700).to_data_url
+    return RQRCode::QRCode.new(url, :size => 4, :level => :h).to_img.resize(700, 700).to_data_url
   end
 end
