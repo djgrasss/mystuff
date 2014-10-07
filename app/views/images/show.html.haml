@@ -1,10 +1,11 @@
 = provide(:title, @image.title)
-.item.thumbnail
-  %img.img-thumbnail{:src => @image.image_url, :alt => '' }
-  .captioe
-    %h3.img-title '#{@image.title}'
-    %p.img-detail '#{@image.description}'
+.alert.alert-success{:role => "alert"}
+  Your image has been uploaded! Click
+  %a{:href => "/images"} here
+  to back
 
-    %a.btn.btn-default{"data-target" => "#item_modal", "data-toggle" => "modal", :href => "#", :role => "button"} More
-    %a.close
-      %span.btn.glyphicon.glyphicon-remove.delete-item{"item-id" => "{{item_id}}", 'data-toggle'=>'modal', 'data-target' => '#item_delete_modal'}
+.image_show
+  %img.image_preview{:src => @image.image_url, :alt => '' }
+  .captioe
+    %h3.img-title #{@image.title}
+    %p.img-detail #{@image.description}

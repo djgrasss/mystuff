@@ -102,6 +102,12 @@ body {
   }
 }
 
+.image_show {
+  text-align: center;
+  .image_preview {
+    max-height: 400px;
+  }
+}
 
 form {
     @extend .middle-half;
