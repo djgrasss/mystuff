@@ -172,8 +172,10 @@ GEM
     rb-readline (0.4.2)
     rdoc (4.1.2)
       json (~> 1.4)
-    rqrcode-with-patches (0.5.4)
+    rqrcode (0.4.2)
+    rqrcode_png (0.1.2)
       chunky_png
+      rqrcode
     rspec (2.13.0)
       rspec-core (~> 2.13.0)
       rspec-expectations (~> 2.13.0)
@@ -276,7 +278,7 @@ DEPENDENCIES
   rails
   rails_12factor (= 0.0.2)
   rb-readline (~> 0.4.2)
-  rqrcode-with-patches
+  rqrcode_png
   rspec-rails (= 2.13.1)
   ruby_parser
   sass-rails (~> 4.0.0)
