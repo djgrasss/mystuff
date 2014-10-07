@@ -35,7 +35,7 @@ $(document).ready(function(){
                 if ( dataType === 'json' ||  dataType === 'jsonp'  ) { // json or jsonp format
                     if ( data.total < 20) {
                         //setTimeout(function() {
-                        $('#container').waterfall('pause', function () {
+                        $('#texts-container').waterfall('pause', function () {
                             $('#waterfall-message').html('<p style="color:#666;">no more data...</p>');
                             //alert('no more data');
                         });

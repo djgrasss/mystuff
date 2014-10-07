@@ -1,5 +1,13 @@
 $hoppy-color: #001978;
 
+
+.hoverdown-menu{
+  display: none;
+}
+
+.hoverdown-menu:hover .dropdown-menu{
+  display: block;
+}
 .team-profile{
   .member{
     margin-bottom: 100px;
