@@ -28,7 +28,11 @@
           %ul.dropdown-menu
             %li
               %a{"data-toggle" => "modal", "data-target" => "#add-image-modal"} Add
-
+        %li.dropdown.hoverdown-menu
+          = link_to "Document", documents_path
+          %ul.dropdown-menu
+            %li
+              %a{"data-toggle" => "modal", "data-target" => "#add-document-modal"} Add
         %li.dropdown.hoverdown-menu
           = link_to "Calendar", events_path
           %ul.dropdown-menu
@@ -40,3 +44,4 @@
   / /.container
 = render 'events/new_modal'
 = render 'images/new_modal'
+= render 'documents/new_modal'

@@ -1,5 +1,5 @@
-class Api::V1::ImagesController < ApplicationController
-  def new_aws_params
+class Api::V1::AwsController < ApplicationController
+  def new_params
     @s3_direct_post = S3_BUCKET.presigned_post(
         key: "uploads/#{SecureRandom.uuid}/${filename}",
         success_action_status: 201,
@@ -12,8 +12,5 @@ class Api::V1::ImagesController < ApplicationController
             s3_direct_post_fields:  @s3_direct_post.fields.to_json(),
         }
     }
-  end
-  def create
-
   end
 end

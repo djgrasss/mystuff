@@ -289,10 +289,10 @@ $(document).ready(function(){
         });
     }
 
-    var $add_image_modal =  $('#add-image-modal');
+    var $add_document_modal =  $('#add-image-modal');
     var $add_image_finished_modal =  $('#add-image-finished-modal');
-    $add_image_modal.find('.btn-primary').click(function(e){
-        var data = $add_image_modal.find('form').serializeFormJSON();
+    $add_document_modal.find('.btn-primary').click(function(e){
+        var data = $add_document_modal.find('form').serializeFormJSON();
         console.log(data);
         $.ajax({
             url: '/images',
@@ -304,7 +304,7 @@ $(document).ready(function(){
             },
             success: function (data, textStatus, jqXHR) {
                 if (data.status_code === 0){
-                    $add_image_modal.modal('hide');
+                    $add_document_modal.modal('hide');
                     $add_image_finished_modal.find('.modal-body a').attr("href", data.response.image_url);
                     $add_image_finished_modal.modal();
                 }else{
@@ -316,28 +316,28 @@ $(document).ready(function(){
             }
         });
     });
-    $add_image_modal.on('shown.bs.modal', function() {
+    $add_document_modal.on('shown.bs.modal', function() {
         $.ajax({
-            url: '/v1/images/new_aws_params',
+            url: '/v1/aws/new_params',
             type: 'get',
             dataType: 'json',
             complete: function (jqXHR, textStatus) {
                 // callback
             },
             success: function (data, textStatus, jqXHR) {
-                var image_aws_params = data.response;
-                var fileInput    = $add_image_modal.find('input:file'),
-                    barContainer = $add_image_modal.find('.progress'),
+                var aws_params = data.response;
+                var fileInput    = $add_document_modal.find('input:file'),
+                    barContainer = $add_document_modal.find('.progress'),
                     progressBar  = barContainer.find('.bar'),
-                    submitButton = $add_image_modal.find('.btn-primary');
+                    submitButton = $add_document_modal.find('.btn-primary');
 
 
                 fileInput.fileupload({
                     fileInput:       fileInput,
-                    url:             image_aws_params.s3_direct_post_url,
+                    url:             aws_params.s3_direct_post_url,
                     type:            'POST',
                     autoUpload:       true,
-                    formData:         $.parseJSON(image_aws_params.s3_direct_post_fields),
+                    formData:         $.parseJSON(aws_params.s3_direct_post_fields),
                     paramName:        'file', // S3 does not like nested name fields i.e. name="user[avatar_url]"
                     dataType:         'XML',  // S3 returns XML if success_action_status is set to 201
                     replaceFileInput: false,
@@ -364,7 +364,7 @@ $(document).ready(function(){
 
                         // create hidden field
                         var input = $("<input />", { type:'hidden', name: fileInput.attr('name'), value: url });
-                        $add_image_modal.find('form').append(input);
+                        $add_document_modal.find('form').append(input);
                     },
                     fail: function(e, data) {
                         submitButton.prop('disabled', false);
@@ -379,6 +379,110 @@ $(document).ready(function(){
             }
         });
     });
+
+
+
+
+
+    var $add_document_modal =  $('#add-document-modal');
+    var $add_document_finished_modal =  $('#add-document-finished-modal');
+    $add_document_modal.find('.btn-primary').click(function(e){
+        var data = $add_document_modal.find('form').serializeFormJSON();
+        console.log(data);
+        $.ajax({
+            url: '/documents',
+            type: 'post',
+            dataType: 'json',
+            data: data,
+            complete: function (jqXHR, textStatus) {
+                // callback
+            },
+            success: function (data, textStatus, jqXHR) {
+                if (data.status_code === 0){
+                    $add_document_modal.modal('hide');
+                    $add_document_finished_modal.find('.modal-body a').attr("href", data.response.url);
+                    $add_document_finished_modal.modal();
+                }else{
+                    alert("error");
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                // error callback
+            }
+        });
+    });
+    $add_document_modal.on('shown.bs.modal', function() {
+        $.ajax({
+            url: '/v1/aws/new_params',
+            type: 'get',
+            dataType: 'json',
+            complete: function (jqXHR, textStatus) {
+                // callback
+            },
+            success: function (data, textStatus, jqXHR) {
+                var aws_params = data.response;
+                var fileInput    = $add_document_modal.find('input:file'),
+                    barContainer = $add_document_modal.find('.progress'),
+                    progressBar  = barContainer.find('.bar'),
+                    submitButton = $add_document_modal.find('.btn-primary');
+
+
+                fileInput.fileupload({
+                    fileInput:       fileInput,
+                    url:             aws_params.s3_direct_post_url,
+                    type:            'POST',
+                    autoUpload:       true,
+                    formData:         $.parseJSON(aws_params.s3_direct_post_fields),
+                    paramName:        'file', // S3 does not like nested name fields i.e. name="user[avatar_url]"
+                    dataType:         'XML',  // S3 returns XML if success_action_status is set to 201
+                    replaceFileInput: false,
+                    progressall: function (e, data) {
+                        var progress = parseInt(data.loaded / data.total * 100, 10);
+                        progressBar.css('width', progress + '%');
+                    },
+                    start: function (e) {
+                        submitButton.prop('disabled', true);
+
+                        progressBar.
+                            css('background', 'green').
+                            css('display', 'block').
+                            css('width', '0%').
+                            text("Loading...");
+                    },
+                    done: function(e, data) {
+                        submitButton.prop('disabled', false);
+                        progressBar.text("Uploading done");
+
+                        // extract key and generate URL from response
+                        var url = $(data.jqXHR.responseXML).find("Location").text();
+                        //var url   = '//' + url_host + '/' + key;
+
+                        // create hidden field
+                        var input = $("<input />", { type:'hidden', name: fileInput.attr('name'), value: url });
+                        $add_document_modal.find('form').append(input);
+                    },
+                    fail: function(e, data) {
+                        submitButton.prop('disabled', false);
+                        progressBar.
+                            css("background", "red").
+                            text("Failed");
+                    }
+                });
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                // error callback
+            }
+        });
+    });
+
+
+    /*$(".fancybox.qr_code").fancybox({
+        fitToView: true, // avoids scaling the image to fit in the viewport
+        beforeShow: function () {
+            this.width = 700;
+            this.height = 700;
+        }
+    });*/
 
 });
 

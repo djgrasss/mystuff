@@ -1,3 +1,5 @@
+require 'rqrcode_png'
+
 module ApplicationHelper
   def full_title(page_title)
     base_title = "Engex"
@@ -6,5 +8,8 @@ module ApplicationHelper
     else
       "#{base_title} | #{page_title}"
     end
+  end
+  def qr_code_data_url(url)
+    return RQRCode::QRCode.new(url).to_img.resize(700, 700).to_data_url
   end
 end

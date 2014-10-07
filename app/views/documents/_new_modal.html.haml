@@ -1,0 +1,32 @@
+#add-document-modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} &times;
+          %span.sr-only Close
+        %h4#myModalLabel.modal-title Add New Document
+      .modal-body
+        %form{role: "form"}
+          %input#document_title.form-control{:placeholder => "Title", :name => "document[title]", :type => "text"}
+          %input#document_description.form-control{:placeholder => "Description", :name => "document[description]", :type => "text"}
+          %input#document_url.form-control{:placeholder => "Url", :name => "document[url]", :type => "file"}
+            .progress
+              .bar{:style => "height: 1.5em;"}
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+        %button#add.btn.btn-primary{:type => "button"} Add
+
+#add-document-finished-modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} &times;
+          %span.sr-only Close
+        %h4#myModalLabel.modal-title Your document has been uploaded!
+      .modal-body
+        Your document can be found
+        %a{target: "_blank"}here!
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close

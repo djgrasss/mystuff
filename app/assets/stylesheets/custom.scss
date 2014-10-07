@@ -1,6 +1,21 @@
 $hoppy-color: #001978;
 
 
+.col-centered{
+    display: table;
+    float: none;
+    margin: 0 auto;
+}
+
+.document{
+  .QR_code{
+    img{
+      width: 225px;
+    }
+  }
+
+}
+
 .directUploadForm{
   @extend .middle-half;
   .field{

@@ -1,0 +1,22 @@
+%p#notice= notice
+
+- document_url = root_url + (url_for @document)
+- qr_url = qr_code_data_url(document_url)
+.document.col-centered
+  .field.Title
+    %label{:for => "#"} Title:
+    %span
+      = @document.title
+  .field.Description
+    %label{:for => "#"} Description:
+    %span
+      = @document.description
+  .field.QR_code
+    %a.fancybox.qr_code{href: qr_url}
+      = image_tag qr_url
+  .field.edit.col-centered
+    = link_to 'Download Document', @document.url
+    \|
+    = link_to 'Edit', edit_document_path(@document)
+    \|
+    = link_to 'Back', documents_path

@@ -3,6 +3,7 @@ Engex::Application.routes.draw do
   resources :items
   resources :texts
   resources :images
+  resources :documents
 
   match '/home',    to: "users#all_stuff",      via: 'get'
   match '/help',    to: "static_pages#help",    via: 'get'
@@ -36,9 +37,9 @@ Engex::Application.routes.draw do
         collection do
         end
       end
-      resources :images do
+      resources :aws do
         collection do
-          get :new_aws_params
+          get :new_params
         end
       end
       resources :qr_codes do
