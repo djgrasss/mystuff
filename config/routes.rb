@@ -41,6 +41,11 @@ Engex::Application.routes.draw do
           get :new_aws_params
         end
       end
+      resources :qr_codes do
+        collection do
+          get :new_aws_params
+        end
+      end
     end
   end
   #namespace :admin do
