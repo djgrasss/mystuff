@@ -1,0 +1,16 @@
+= form_for(@image, html: { class: "directUpload" }) do |f|
+  = render partial: 'shared/error_messages', locals:{obj:@image}
+  = hidden_field_tag('s3_direct_post_url_host', @s3_direct_post.url.host)
+  = hidden_field_tag('s3_direct_post_url', @s3_direct_post.url)
+  = hidden_field_tag('s3_direct_post_fields',  @s3_direct_post.fields.to_json())
+  .field
+    = f.label :title, "title"
+    = f.text_field :title
+  .field
+    = f.label :description, "description"
+    = f.text_field :description
+  .field
+    = f.label :image_url
+    = f.file_field :image_url
+  .field= f.submit "New Image", class: "btn btn-large btn-primary"
+.row

@@ -57,7 +57,6 @@ class ImagesController < ApplicationController
         success_action_status: 201,
         acl: :public_read
     )
-    p @s3_direct_post.fields.to_json.html_safe
     @image = Image.new
   end
   private
