@@ -7,8 +7,10 @@ class Api::V1::ImagesController < ApplicationController
     )
     @image = Image.new
     render json: {
-        s3_direct_post: @s3_direct_post,
-        image: @image
+        response: {
+            s3_direct_post: @s3_direct_post,
+            image: @image
+        }
     }
   end
 end

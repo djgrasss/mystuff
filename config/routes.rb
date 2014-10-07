@@ -37,6 +37,10 @@ Engex::Application.routes.draw do
           get :haha
         end
       end
+      resources :images do
+        collection do
+        end
+      end
     end
   end
   #namespace :admin do
