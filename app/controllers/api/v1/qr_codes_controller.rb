@@ -1,4 +1,4 @@
-require 'rqrcode_png'
+require 'rqrcode'
 
 class Api::V1::QrCodesController < ApplicationController
   def index

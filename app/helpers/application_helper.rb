@@ -1,4 +1,4 @@
-require 'rqrcode_png'
+require 'rqrcode'
 
 module ApplicationHelper
   def full_title(page_title)
