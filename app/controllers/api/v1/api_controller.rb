@@ -1,5 +1,5 @@
 module Api::V1
-  class ApiController < ApplicationController
+  class ApiController < ApiController
     # Generic API stuff here
   end
 end
