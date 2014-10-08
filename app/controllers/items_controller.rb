@@ -39,13 +39,18 @@ class ItemsController < ApplicationController
     respond_to do |format|
       format.html{
       }
+
       format.json {
-        render json:{
-            :total => @items.size,
-            :result => @result.values
-            # :text => @texts.as_json,
-            # :image => @images.as_json
-        }
+        if @items.size == 0
+          render json:{}
+        else
+          render json:{
+              :total => @items.size,
+              :result => @result.values
+              # :text => @texts.as_json,
+              # :image => @images.as_json
+          }
+        end
       }
     end
   end

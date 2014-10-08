@@ -43,10 +43,14 @@ class ImagesController < ApplicationController
       }
       format.json {
         ret = @images.as_json
-        render json:{
-          :total => ret.count,
-          :result => ret
-        }
+        if ret.count==0
+          render json:{}
+        else
+          render json:{
+              :total => ret.count,
+              :result => ret
+          }
+        end
       }
     end
   end

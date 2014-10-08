@@ -14,9 +14,9 @@
 //= require jquery_ujs
 //= require jquery-ui/core
 //= require jquery-ui/widget
+//= require handlebars.js
 //= require bootstrap.min
 //= require moment
-//= require handlebars.js
 //= require jquery.fileupload
 //= require jquery.datetimepicker
 //= require jquery.mousewheel-3.0.6.pack.js
