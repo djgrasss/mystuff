@@ -14,14 +14,18 @@
 //= require jquery_ujs
 //= require jquery-ui/core
 //= require jquery-ui/widget
-//= require moment
-//= require common
-//= require turbolinks
 //= require bootstrap.min
+//= require moment
 //= require handlebars.js
-//= require modal
-//= require jquery.mousewheel-3.0.6.pack.js
-//= require vendor
 //= require jquery.fileupload
 //= require jquery.datetimepicker
+//= require jquery.mousewheel-3.0.6.pack.js
+//= require vendor
+
+
+
+
+//= require common
+//= require modal
+//= require turbolinks
 //= require custom

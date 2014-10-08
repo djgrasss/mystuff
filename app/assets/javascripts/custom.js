@@ -1,88 +1,4 @@
-//$(document).ready(function(){
-//    $('.navbar .dropdown').hover(function() {
-//        $(this).find('.dropdown-menu').first().stop(true, true).slideDown(150);
-//    }, function() {
-//        $(this).find('.dropdown-menu').first().stop(true, true).slideUp(105)
-//    });
-//})
-
-
-
-function txt_wrap(){
-    $('.txt_wrap').each(function(){
-        var $wrap=$(this);
-        var $txt=$wrap.find(".selection_text");
-        var wrap_height=parseInt($wrap.innerHeight(),10);
-        var txt_height=parseInt($txt[0].scrollHeight,10);
-        if (txt_height>wrap_height) {
-            var $more=$wrap.parent().find('.more');
-            $more.click(function(){
-                if ($wrap.hasClass('height_limit')) {
-                    $wrap.removeClass('height_limit');
-                    var $span=$more.find('span');
-                    $span.html("Less");
-                    $span.removeClass('glyphicon-arrow-down');
-                    $span.addClass('glyphicon-arrow-up');
-                    $('.item').resize();
-                } else {
-                    $wrap.addClass('height_limit');
-                    var $span=$more.find('span');
-                    $span.html("More");
-                    $span.removeClass('glyphicon-arrow-up');
-                    $span.addClass('glyphicon-arrow-down');
-                    $('.item').resize();
-                }
-            });
-            $more.show();
-
-        }
-    });
-}
-
-function tofu_bind() {
-    $('.delete-item').on('click', function() {
-        $('#item_delete_modal').attr({
-            'item-id': $(this).attr('item-id')
-        });
-    });
-}
-
-function fancybox() {
-    $(".fancybox-thumbs").click(function(e){
-        e.preventDefault();
-    }).fancybox({
-        type: "image",
-        //prevEffect	: 'none',
-        nextEffect	: 'none',
-
-        helpers	: {
-            buttons : {
-                //position : 'top'
-            },
-            title : {
-            },
-            thumbs	: {
-                width	: 50,
-                height	: 50
-            }
-        }
-    });
-}
-
-
-//= hidden_field_tag('s3_direct_post_url', @s3_direct_post.url)
-//= hidden_field_tag('s3_direct_post_fields', @s3_direct_post.fields)
-
-
-function getEventFromCalendarModal($cmodal){
-    return {
-        title: $cmodal.find('#title').val(),
-        description: $cmodal.find('#description').val(),
-        begin_datetime: event_back_format($cmodal.find('#stime').val()),
-        end_datetime: event_back_format($cmodal.find('#etime').val())
-    }
-}
-$(document).ready(function(){
+$(document).on('ready page:load', function(){
     $('.fancybox').fancybox({
         width: 500,
         height: 500
@@ -92,15 +8,10 @@ $(document).ready(function(){
         onShow: function() {
         }
     });
-});
 
 
-
-
-$(document).ready(function(){
-    calendar_bind=function(){
-        var event_selected;
-        var $calendar = $('#calendar');   $calendar.fullCalendar({
+    var event_selected;
+    $('#calendar').fullCalendar({
             header: {
                 left: 'prev,next today',
                 center: 'title',
@@ -163,9 +74,7 @@ $(document).ready(function(){
                     event: _event
                 },
                 success: function (data) {
-                    if (data.status_code==0) {
-
-                    } else {
+                    if (data.status_code!==0) {
                         revertFunc();
                     }
                 },
@@ -190,7 +99,7 @@ $(document).ready(function(){
                     event: event
                 },
                 success: function(data){
-                    if (data.status_code == 0){
+                    if (data.status_code === 0){
                         $('#calendar-modal').modal('hide');
                         event_selected.title = event.title;
                         event_selected.description = event.description;
@@ -204,7 +113,7 @@ $(document).ready(function(){
                 error: function(){
                     alert("error");
                 }
-            })
+            });
         });
 
         $('#calendar-modal #delete').click(function(){
@@ -215,7 +124,7 @@ $(document).ready(function(){
                 dataType: "json",
                 data: {"_method":"delete"},
                 success: function(data){
-                    if (data.status_code == 0){
+                    if (data.status_code === 0){
                         $('#calendar-modal').modal('hide');
                         $('#calendar').fullCalendar('removeEvents', event_id);
                     }else{
@@ -225,7 +134,7 @@ $(document).ready(function(){
                 error: function(){
                     alert("error");
                 }
-            })
+            });
         });
 
         var $calendar_add_modal =  $('#calendar-add-modal');
@@ -239,7 +148,7 @@ $(document).ready(function(){
                     event: event
                 },
                 success: function(data){
-                    if (data.status_code == 0){
+                    if (data.status_code === 0){
                         $calendar_add_modal.modal('hide');
                     }else{
                         alert("can't add");
@@ -248,18 +157,18 @@ $(document).ready(function(){
                 error: function(){
                     alert("error");
                 }
-            })
+            });
         });
 
         $calendar_add_modal.find("#stime").change(function(){
             var startTime=$(this).val();
-            if (startTime==null || startTime=="") {
+            if (startTime===null || startTime==="") {
                 return;
             } else {
                 startTime=moment(startTime);
                 var $end=$calendar_add_modal.find("#etime");
                 var endTime=$end.val();
-                if (endTime==null || endTime=="" || startTime>moment(endTime)) {
+                if (endTime===null || endTime==="" || startTime>moment(endTime)) {
                     endTime=startTime.add(1, "hours");
                     $end.val(event_front_format(endTime.format()));
                 }
@@ -268,13 +177,13 @@ $(document).ready(function(){
 
         $calendar_add_modal.find("#etime").change(function(){
             var endTime=$(this).val();
-            if (endTime==null || endTime=="") {
+            if (endTime===null || endTime==="") {
                 return;
             } else {
                 endTime=moment(endTime);
                 var $start=$calendar_add_modal.find("#stime");
                 var startTime=$start.val();
-                if (startTime==null || startTime=="" || moment(startTime)>endTime) {
+                if (startTime===null || startTime==="" || moment(startTime)>endTime) {
                     startTime=endTime.add(-1, "hours");
                     $start.val(event_front_format(startTime.format()));
                 }
@@ -287,7 +196,6 @@ $(document).ready(function(){
             $calendar_add_modal.find("#stime").val("");
             $calendar_add_modal.find("#etime").val("");
         });
-    }
 
     var $add_document_modal =  $('#add-image-modal');
     var $add_image_finished_modal =  $('#add-image-finished-modal');
@@ -384,7 +292,7 @@ $(document).ready(function(){
 
 
 
-    var $add_document_modal =  $('#add-document-modal');
+    var $add_document_modal = $('#add-document-modal');
     var $add_document_finished_modal =  $('#add-document-finished-modal');
     $add_document_modal.find('.btn-primary').click(function(e){
         var data = $add_document_modal.find('form').serializeFormJSON();
@@ -411,7 +319,6 @@ $(document).ready(function(){
             }
         });
     });
-    console.log($add_document_modal);
     $add_document_modal.on('shown.bs.modal', function() {
         $.ajax({
             url: '/v1/aws/new_params',
@@ -484,5 +391,158 @@ $(document).ready(function(){
             this.height = 700;
         }
     });
-});
+    $('#images-container').waterfall({
+        itemCls: 'item',
+        colWidth:222,
+        gutterWidth:15,
+        fitWidth:false,
+        checkImagesLoaded:false,
+        callbacks: {
+            loadingFinished: function($loading, isBeyondMaxPage) {
+                if ( !isBeyondMaxPage ) {
+                    $loading.fadeOut();
+                } else {
+                    $loading.hide();
+                    $('#page-navigation').show();
+                }
+                var count=0;
+                var eruption=function() {
+                    if (count<10) {
+                        $('img').resize();
+                        count++;
+                    }
+                    else
+                        clearInterval(erupt);
+                };
+                var erupt=setInterval(eruption, 500);
+                tofu_bind();
+                fancybox();
+            },
+            renderData: function (data, dataType) {
+                var tpl,template;
+                if ( dataType === 'json' ||  dataType === 'jsonp'  ) { // json or jsonp format
+                    if ( data.total < 20) {
+                        //setTimeout(function() {
+                        $('#images-container').waterfall('pause', function () {
+                            $('#waterfall-message').html('<p style="color:#666;">no more data...</p>');
+                            //alert('no more data');
+                        });
+                        // },500);
+                    }
 
+                    tpl = $('#waterfall-tpl').html();
+                    template = Handlebars.compile(tpl);
+                    return template(data);
+                } else { // html format
+                    return data;
+                }
+            }
+        },
+        path:function(page) {
+            return '/images.json?page='+page;
+        }
+    });
+
+
+    $('.directUploadForm').find("input:file").each(function(i, elem) {
+        var fileInput    = $(elem);
+        var form         = $(fileInput.parents('form:first'));
+        var submitButton = form.find('input[type="submit"]');
+        var progressBar  = $("<div class='bar'></div>").css('height', '1.5em');
+        var barContainer = $("<div class='progress'></div>").append(progressBar);
+        var url = form.find('#s3_direct_post_url').val();
+        var url_host = form.find('#s3_direct_post_url_host').val();
+        var formData = form.find('#s3_direct_post_fields').val();
+        console.log(formData);
+        console.log(typeof formData);
+        fileInput.after(barContainer);
+        fileInput.fileupload({
+            fileInput:       fileInput,
+            url:             url,
+            type:            'POST',
+            autoUpload:       true,
+            formData:         $.parseJSON(formData),
+            paramName:        'file', // S3 does not like nested name fields i.e. name="user[avatar_url]"
+            dataType:         'XML',  // S3 returns XML if success_action_status is set to 201
+            replaceFileInput: false,
+            progressall: function (e, data) {
+                var progress = parseInt(data.loaded / data.total * 100, 10);
+                progressBar.css('width', progress + '%');
+            },
+            start: function (e) {
+                submitButton.prop('disabled', true);
+                progressBar.
+                    css('background', 'green').
+                    css('display', 'block').
+                    css('width', '0%').
+                    text("Loading...");
+            },
+            done: function(e, data) {
+                submitButton.prop('disabled', false);
+                progressBar.text("Uploading done");
+
+                var url = $(data.jqXHR.responseXML).find("Location").text();
+                var input = $("<input />", { type:'hidden', name: fileInput.attr('name'), value: url });
+                form.append(input);
+            },
+            fail: function(e, data) {
+                submitButton.prop('disabled', false);
+                progressBar.
+                    css("background", "red").
+                    text("Failed");
+            }
+        });
+    });
+    $('#texts-container').waterfall({
+        itemCls: 'item',
+        colWidth:222,
+        gutterWidth:15,
+        fitWidth:false,
+        checkImagesLoaded:false,
+        callbacks: {
+            loadingFinished: function($loading, isBeyondMaxPage) {
+                if ( !isBeyondMaxPage ) {
+                    $loading.fadeOut();
+                } else {
+                    $loading.hide();
+                    $('#page-navigation').show();
+                }
+
+                var count=0;
+                var eruption=function() {
+                    if (count<3) {
+                        $('img').resize();
+                        count++;
+                    }
+                    else
+                        clearInterval(erupt);
+                };
+                var erupt=setInterval(eruption, 500);
+                txt_wrap();
+                tofu_bind();
+            },
+            renderData: function (data, dataType) {
+                var tpl,template;
+                if ( dataType === 'json' ||  dataType === 'jsonp'  ) { // json or jsonp format
+                    if ( data.total < 20) {
+                        //setTimeout(function() {
+                        $('#texts-container').waterfall('pause', function () {
+                            $('#waterfall-message').html('<p style="color:#666;">no more data...</p>');
+                            //alert('no more data');
+                        });
+                        // },500);
+                    }
+
+                    tpl = $('#waterfall-tpl').html();
+                    template = Handlebars.compile(tpl);
+                    return template(data);
+                } else { // html format
+                    return data;
+                }
+            }
+        },
+        path:function(page) {
+            return '/texts.json?page='+page;
+        }
+    });
+});
