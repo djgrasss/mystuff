@@ -25,19 +25,22 @@
           = link_to "Text", texts_path
         %li.dropdown.hoverdown-menu
           = link_to "Image", images_path
-          %ul.dropdown-menu
-            %li
-              %a{"data-toggle" => "modal", "data-target" => "#add-image-modal"} Add
+          - if signed_in?
+            %ul.dropdown-menu
+              %li
+                %a{"data-toggle" => "modal", "data-target" => "#add-image-modal"} Add
         %li.dropdown.hoverdown-menu
           = link_to "Document", documents_path
-          %ul.dropdown-menu
-            %li
-              %a{"data-toggle" => "modal", "data-target" => "#add-document-modal"} Add
+          - if signed_in?
+            %ul.dropdown-menu
+              %li
+                %a{"data-toggle" => "modal", "data-target" => "#add-document-modal"} Add
         %li.dropdown.hoverdown-menu
           = link_to "Calendar", events_path
-          %ul.dropdown-menu
-            %li
-              %a{"data-toggle" => "modal", "data-target" => "#add-event-modal"} Add
+          - if signed_in?
+            %ul.dropdown-menu
+              %li
+                %a{"data-toggle" => "modal", "data-target" => "#add-event-modal"} Add
       %ul.nav.navbar-nav.navbar-right
         = render 'layouts/signin'
     / /.navbar-collapse

@@ -411,6 +411,7 @@ $(document).ready(function(){
             }
         });
     });
+    console.log($add_document_modal);
     $add_document_modal.on('shown.bs.modal', function() {
         $.ajax({
             url: '/v1/aws/new_params',
@@ -476,13 +477,12 @@ $(document).ready(function(){
     });
 
 
-    /*$(".fancybox.qr_code").fancybox({
+    $(".fancybox.qr_code").fancybox({
         fitToView: true, // avoids scaling the image to fit in the viewport
         beforeShow: function () {
             this.width = 700;
             this.height = 700;
         }
-    });*/
-
+    });
 });
 
