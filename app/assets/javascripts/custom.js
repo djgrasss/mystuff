@@ -1,5 +1,4 @@
 $(document).on('ready page:load', function(){
-
     $('.fancybox').fancybox({
         width: 500,
         height: 500
@@ -403,67 +402,78 @@ $(document).on('ready page:load', function(){
         }
     });
 
-    $('#images-container').waterfall({
-        itemCls: 'item',
-        colWidth:222,
-        gutterWidth:15,
-        fitWidth:false,
-        checkImagesLoaded:false,
-        callbacks: {
-            loadingFinished: function($loading, isBeyondMaxPage) {
-                if ( !isBeyondMaxPage ) {
-                    $loading.fadeOut();
-                } else {
-                    $loading.hide();
-                    $('#page-navigation').show();
-                }
-                var count=0;
-                var eruption=function() {
-                    if (count<10) {
-                        $('img').resize();
-                        count++;
+    var $img_container=$('#images-container');
+    /*
+    if ($img_container.length) {
+        $.removeData($img_container.get(0));
+        $img_container.off('waterfall');
+        $img_container.unbind('waterfall');
+    }*/
+
+    if (!$img_container.attr("loaded")) {
+        $('#images-container').waterfall({
+            itemCls: 'item',
+            colWidth: 222,
+            gutterWidth: 15,
+            fitWidth: false,
+            checkImagesLoaded: false,
+            callbacks: {
+                loadingFinished: function ($loading, isBeyondMaxPage) {
+                    $img_container.attr("loaded","true");
+                    if (!isBeyondMaxPage) {
+                        $loading.fadeOut();
+                    } else {
+                        $loading.hide();
+                        $('#page-navigation').show();
                     }
-                    else
-                        clearInterval(erupt);
-                };
-                var erupt=setInterval(eruption, 500);
-                tofu_bind();
-                fancybox();
-            },
-            renderData: function (data, dataType) {
-                var tpl,template;
-                if (data.total) {
-                    if (dataType === 'json' || dataType === 'jsonp') { // json or jsonp format
-                        if (data.total < 20) {
+                    var count = 0;
+                    var eruption = function () {
+                        if (count < 10) {
+                            $('img').resize();
+                            count++;
+                        }
+                        else
+                            clearInterval(erupt);
+                    };
+                    var erupt = setInterval(eruption, 500);
+                    tofu_bind();
+                    fancybox();
+                },
+                renderData: function (data, dataType) {
+                    var tpl, template;
+                    if (data.total) {
+                        if (dataType === 'json' || dataType === 'jsonp') { // json or jsonp format
+                            if (data.total < 20) {
+                                waterfall_pause();
+                            }
+
+                            tpl = $('#waterfall-tpl').html();
+                            template = Handlebars.compile(tpl);
+                            return template(data);
+                        } else { // html format
+                            return data;
+                        }
+                    } else {
+                        if (waterfall_done == true) {
+                            waterfall_pause();
+                        } else {
+                            waterfall_done = false;
                             waterfall_pause();
                         }
-
-                        tpl = $('#waterfall-tpl').html();
-                        template = Handlebars.compile(tpl);
-                        return template(data);
-                    } else { // html format
-                        return data;
                     }
+                }
+            },
+            path: function (page) {
+                if (waterfall_done == true) {
+                    waterfall_pause();
                 } else {
-                    if (waterfall_done==true) {
-                        waterfall_pause();
-                    } else {;
-                         waterfall_done = false;
-                         waterfall_pause();
-                     }
+                    waterfall_done = false;
+                    return '/images.json?page=' + page;
+
                 }
             }
-        },
-        path:function(page) {
-            if (waterfall_done == true) {
-                waterfall_pause();
-            } else {
-                waterfall_done = false;
-                return '/images.json?page=' + page;
-
-            }
-        }
-    });
+        });
+    }
 
 
     $('.directUploadForm').find("input:file").each(function(i, elem) {
@@ -515,119 +525,140 @@ $(document).on('ready page:load', function(){
             }
         });
     });
-    $('#texts-container').waterfall({
-        itemCls: 'item',
-        colWidth:222,
-        gutterWidth:15,
-        fitWidth:false,
-        checkImagesLoaded:false,
-        callbacks: {
-            loadingFinished: function($loading, isBeyondMaxPage) {
-                if ( !isBeyondMaxPage ) {
-                    $loading.fadeOut();
-                } else {
-                    $loading.hide();
-                    $('#page-navigation').show();
-                }
 
-                var count=0;
-                var eruption=function() {
-                    if (count<3) {
-                        $('img').resize();
-                        count++;
-
- }
-                    else
-                        clearInterval(erupt);
-                };
-                var erupt=setInterval(eruption, 500);
-                txt_wrap();
-                tofu_bind();
-            },
-            renderData: function (data, dataType) {
-                var tpl,template;
-                if (data.total) {
-                    if (dataType === 'json' || dataType === 'jsonp') { // json or jsonp format
-                        if (data.total < 20) {
-                            //setTimeout(function() {
-                            waterfall_pause();
-                        }
-                        tpl = $('#waterfall-tpl').html();
-                        template = Handlebars.compile(tpl);
-                        return template(data);
-                    } else { // html format
-                        return data;
+    var $txt_container=$('#texts-container');
+    /*
+    if ($txt_container.length) {
+        $.removeData($txt_container.get(0));
+        $txt_container.off('waterfall');
+        $txt_container.unbind('waterfall');
+    }*/
+    if (!$txt_container.attr('loaded')) {
+        $txt_container.waterfall({
+            itemCls: 'item',
+            colWidth: 222,
+            gutterWidth: 15,
+            fitWidth: false,
+            checkImagesLoaded: false,
+            callbacks: {
+                loadingFinished: function ($loading, isBeyondMaxPage) {
+                    $txt_container.attr('loaded','true');
+                    if (!isBeyondMaxPage) {
+                        $loading.fadeOut();
+                    } else {
+                        $loading.hide();
+                        $('#page-navigation').show();
                     }
-                } else {
-                    waterfall_pause();
-                }
-            }
-        },
-        path:function(page) {
-            if (waterfall_done==true) {
-                waterfall_pause();
-            } else {
-                waterfall_done = false;
-                return '/texts.json?page=' + page;
-            }
-        }
-    });
 
-    $('#items-container').waterfall({
-        itemCls: 'item',
-        colWidth:222,
-        gutterWidth:15,
-        fitWidth:false,
-        checkImagesLoaded:false,
-        callbacks: {
-            loadingFinished: function($loading, isBeyondMaxPage) {
-                if ( !isBeyondMaxPage ) {
-                    $loading.fadeOut();
-                } else {
-                    $loading.hide();
-                    $('#page-navigation').show();
-                }
+                    var count = 0;
+                    var eruption = function () {
+                        if (count < 3) {
+                            $('img').resize();
+                            count++;
 
-                var count=0;
-                var eruption=function() {
-                    if (count<3) {
-                        $('img').resize();
-                        count++;
-                     }
-                    else
-                        clearInterval(erupt);
-                };
-                var erupt=setInterval(eruption, 500);
-                txt_wrap();
-                tofu_bind();
-                fancybox();
-            },
-            renderData: function (data, dataType) {
-                var tpl,template;
-                if (data.total) {
-                    if (dataType === 'json' || dataType === 'jsonp') { // json or jsonp format
-                        if (data.total < 20) {
-                            waterfall_pause();
                         }
-                        tpl = $('#waterfall-tpl').html();
-                        template = Handlebars.compile(tpl);
-                        ;
-                        return template(data);
-                    } else { // html format
-                        return data;
+                        else
+                            clearInterval(erupt);
+                    };
+                    var erupt = setInterval(eruption, 500);
+                    txt_wrap();
+                    tofu_bind();
+                },
+                renderData: function (data, dataType) {
+                    var tpl, template;
+                    if (data.total) {
+                        if (dataType === 'json' || dataType === 'jsonp') { // json or jsonp format
+                            if (data.total < 20) {
+                                //setTimeout(function() {
+                                waterfall_pause();
+                            }
+                            tpl = $('#waterfall-tpl').html();
+                            template = Handlebars.compile(tpl);
+                            return template(data);
+                        } else { // html format
+                            return data;
+                        }
+                    } else {
+                        waterfall_pause();
                     }
-                } else {
+                }
+            },
+            path: function (page) {
+                if (waterfall_done == true) {
                     waterfall_pause();
+                } else {
+                    waterfall_done = false;
+                    return '/texts.json?page=' + page;
                 }
             }
-        },
-        path:function(page) {
-            if (waterfall_done==true) {
-                waterfall_pause();
-            } else {
-                waterfall_done=false;
-                return '/items.json?page=' + page;
+        });
+    }
+
+    var $items_container=$('#items-container');
+    /*
+    if ($items_container.length) {
+        $.removeData($items_container.get(0));
+        $items_container.off('waterfall');
+        $items_container.unbind('waterfall');
+    }*/
+
+    if (!$items_container.attr("loaded")) {
+        $items_container.waterfall({
+            itemCls: 'item',
+            colWidth: 222,
+            gutterWidth: 15,
+            fitWidth: false,
+            checkImagesLoaded: false,
+            callbacks: {
+                loadingFinished: function ($loading, isBeyondMaxPage) {
+                    $items_container.attr("loaded", "true");
+                    if (!isBeyondMaxPage) {
+                        $loading.fadeOut();
+                    } else {
+                        $loading.hide();
+                        $('#page-navigation').show();
+                    }
+
+                    var count = 0;
+                    var eruption = function () {
+                        if (count < 3) {
+                            $('img').resize();
+                            count++;
+                        }
+                        else
+                            clearInterval(erupt);
+                    };
+                    var erupt = setInterval(eruption, 500);
+                    txt_wrap();
+                    tofu_bind();
+                    fancybox();
+                },
+                renderData: function (data, dataType) {
+                    var tpl, template;
+                    if (data.total) {
+                        if (dataType === 'json' || dataType === 'jsonp') { // json or jsonp format
+                            if (data.total < 20) {
+                                waterfall_pause();
+                            }
+                            tpl = $('#waterfall-tpl').html();
+                            template = Handlebars.compile(tpl);
+                            return template(data);
+                        } else { // html format
+                            return data;
+                        }
+                    } else {
+                        waterfall_pause();
+                    }
+                }
+            },
+            path: function (page) {
+                if (waterfall_done == true) {
+                    waterfall_pause();
+                } else {
+                    waterfall_done = false;
+                    return '/items.json?page=' + page;
+                }
             }
-        }
-    });
+        });
+    }
 });
