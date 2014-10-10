@@ -12,20 +12,22 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui/core
-//= require jquery-ui/widget
+//= require jquery-ui/jquery-ui.js
 //= require handlebars.js
 //= require bootstrap.min
+//= require angular
+//= require angular_controller.js
+//= require common
+
+//= require jie_search_panel.js
+//= require jie_waterfall.js
+
 //= require moment
 //= require jquery.fileupload
 //= require jquery.datetimepicker
 //= require jquery.mousewheel-3.0.6.pack.js
 //= require vendor
-
-
-
-
-//= require common
 //= require modal
 //= require turbolinks
 //= require custom
+
