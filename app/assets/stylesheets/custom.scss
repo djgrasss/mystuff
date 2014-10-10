@@ -2,6 +2,28 @@ $hopkins-blue: #001978;
 $apple-grey: #616161;
 $hoppy-color: $apple-grey;
 
+
+.search-panel{
+  input{
+    display: inline;
+  }
+  #search-input{
+    width: 160px;
+  }
+  #search-confirm{
+    width: 70px;
+  }
+  .search-type{
+    width: 60px;
+    color: #79a1d2;
+  }
+}
+
+.waterfall-container{
+  width: 1000px;
+  margin: 0 auto;
+}
+
 .col-centered{
     display: table;
     float: none;
@@ -105,6 +127,7 @@ $hoppy-color: $apple-grey;
     @extend .col-lg-offset-4;
 }
 body {
+  font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
   position: relative;
   padding-top: 65px;
 }
@@ -185,6 +208,17 @@ body {
     }
   }
 }
+
+
+.input-group-btn{
+  .btn {
+    width: 55px;
+    height:25px;
+    margin-bottom:5px;
+  }
+}
+
+
 
 .bs-docs-footer {
   padding-top: 40px;
@@ -523,4 +557,6 @@ aside {
   padding: 0.2em;
   color:   white;
   display: none;
+}
+.search-bar{
 }

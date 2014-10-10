@@ -5,6 +5,18 @@ class DocumentsController < ApplicationController
   # GET /documents.json
   def index
     @documents = Document.all
+
+    respond_to do |format|
+      format.html{
+      }
+      format.json {
+        ret = @documents.as_json
+        render json:{
+            :total => ret.count,
+            :result => ret
+        }
+      }
+    end
   end
 
   # GET /documents/1

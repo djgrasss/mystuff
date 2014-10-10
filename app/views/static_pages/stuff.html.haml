@@ -1,0 +1,39 @@
+.form-group.search-panel
+  %input.search-type.form-control{type:"button", value:"All"}
+  %input.search-type.form-control{type:"button", value:"Image"}
+  %input.search-type.form-control{type:"button", value:"Text"}
+  %input.search-type.form-control{type:"button", value:"Doc"}
+  %input#search-input.form-control{placeholder: "Your keywords here"}
+  %input#search-confirm.form-control{type:"button", value:"Search"}
+
+.wf-container
+%script#items-waterfall-tpl{:type => "text/x-handlebars-template"}
+  {{#result}}
+  {{#ifCond actable_type '==' 'Image'}}
+  =render 'images/image'
+  {{else}}
+  =render 'texts/text'
+  {{/ifCond}}
+  {{/result}}
+
+%script#images-waterfall-tpl{:type => "text/x-handlebars-template"}
+  {{#result}}
+  =render 'images/image'
+  {{/result}}
+
+%script#texts-waterfall-tpl{:type => "text/x-handlebars-template"}
+  {{#result}}
+  =render 'texts/text'
+  {{/result}}
+
+
+.main{"ng-controller" => "docFunction"}
+  %ul
+    %li.itemHolder{"ng-repeat" => "doc in docData"}
+      %a{href: "{{doc.url}}"}
+        %div
+          %h3 {{doc.title }}
+          %p {{doc.description}}
+
+
+=render 'items/alter_modal'

@@ -1,7 +1,9 @@
 @import "bootstrap";
 @import "bootstrap-sprockets";
 @import "custom";
-@import "jquery.datetimepicker.css";
+@import "./jquery.datetimepicker.css";
+@import "./jquery-ui/jquery-ui.css";
+@import "./jquery-ui/jquery-ui.theme.css";
 @import "./fancybox/jquery.fancybox.css";
 @import "./fancybox/helpers/jquery.fancybox-buttons.css";
 @import "./fancybox/helpers/jquery.fancybox-thumbs.css";

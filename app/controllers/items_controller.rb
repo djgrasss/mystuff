@@ -41,16 +41,15 @@ class ItemsController < ApplicationController
       }
 
       format.json {
-        if @items.size == 0
-          render json:{}
-        else
-          render json:{
-              :total => @items.size,
-              :result => @result.values
-              # :text => @texts.as_json,
-              # :image => @images.as_json
-          }
-        end
+        # if @items.size == 0
+        #   render json:{}
+        # else
+        render json:{
+            :total => @items.size,
+            :result => @result.values
+            # :text => @texts.as_json,
+            # :image => @images.as_json
+        }
       }
     end
   end

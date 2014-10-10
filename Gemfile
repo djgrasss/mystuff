@@ -19,6 +19,7 @@ gem 'paperclip'
 gem 'momentjs-rails', '~> 2.8.3'
 gem 'jquery-datetimepicker-rails', '~> 2.3.0.0'
 gem 'rqrcode_png'  
+gem 'angularjs-rails'
 
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -26,7 +27,8 @@ gem 'rqrcode_png'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-gem 'jquery-ui-rails'
+#gem 'jquery-ui-rails'
+#gem 'jquery-ui-sass-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'

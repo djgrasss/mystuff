@@ -12,14 +12,10 @@ class TextsController < ApplicationController
       }
       format.json {
         ret = @texts.as_json
-        if ret.count==0
-          render json:{}
-        else
-          render json:{
-              :total => ret.count,
-              :result => ret
-          }
-        end
+        render json:{
+            :total => ret.count,
+            :result => ret
+        }
       }
     end
   end
