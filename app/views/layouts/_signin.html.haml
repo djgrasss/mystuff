@@ -1,6 +1,15 @@
 - if signed_in?
   %li.dropdown
     %a.dropdown-toggle{"data-toggle" => "dropdown", :href=>"#" }
+      Add
+      %span.caret
+      %ul.dropdown-menu{:role => "menu"}
+        %li
+          %a{"data-toggle" => "modal", "data-target" => "#add-document-modal"} Document
+          %a{"data-toggle" => "modal", "data-target" => "#add-image-modal"} Image
+          %a{"data-toggle" => "modal", "data-target" => "#add-event-modal"} Event
+  %li.dropdown
+    %a.dropdown-toggle{"data-toggle" => "dropdown", :href=>"#" }
       Account
       %span.caret
     %ul.dropdown-menu{:role => "menu"}

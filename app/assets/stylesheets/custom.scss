@@ -3,6 +3,16 @@ $apple-grey: #616161;
 $hoppy-color: $apple-grey;
 
 
+.alternative-row:nth-child(even){
+  background-color: #eeeeee;
+}
+.alternative-row:nth-child(odd){
+  background-color: #aaaaaa;
+}
+
+.inline{
+  display: inline;
+}
 .search-panel{
   input{
     display: inline;
@@ -14,7 +24,8 @@ $hoppy-color: $apple-grey;
     width: 70px;
   }
   .search-type{
-    width: 60px;
+    @extend .inline;
+    width: auto;
     color: #79a1d2;
   }
 }

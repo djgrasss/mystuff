@@ -9,7 +9,7 @@
         %span.icon-bar
       -#= link_to "HOPPY",  root_path, class: "navbar-brand"
       %a{:href => root_path, :class=>"navbar-brand"}
-        =image_tag("title_logo.png", alt: "HOPPY")
+        =image_tag("title_logo.png", alt: "JNote")
     / Collect the nav links, forms, and other content for toggling
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       %ul.nav.navbar-nav
@@ -19,21 +19,6 @@
           = link_to "Help", help_path
         %li
           = link_to "About", about_path
-        %li
-          = link_to "Stuff", stuff_path
-        %li.dropdown.hoverdown-menu
-          = link_to "Document", documents_path
-          - if signed_in?
-            %ul.dropdown-menu
-              %li
-                %a{"data-toggle" => "modal", "data-target" => "#add-document-modal"} Add Document
-                %a{"data-toggle" => "modal", "data-target" => "#add-image-modal"} Add Image
-        %li.dropdown.hoverdown-menu
-          = link_to "Calendar", events_path
-          - if signed_in?
-            %ul.dropdown-menu
-              %li
-                %a{"data-toggle" => "modal", "data-target" => "#add-event-modal"} Add
       %ul.nav.navbar-nav.navbar-right
         = render 'layouts/signin'
     / /.navbar-collapse

@@ -1,12 +1,16 @@
+:javascript
+  waterfall=true
+
 .form-group.search-panel
   %input.search-type.form-control{type:"button", value:"All"}
   %input.search-type.form-control{type:"button", value:"Image"}
   %input.search-type.form-control{type:"button", value:"Text"}
   %input.search-type.form-control{type:"button", value:"Doc"}
+  %input.search-type.form-control{type:"button", value:"Calendar"}
   %input#search-input.form-control{placeholder: "Your keywords here"}
   %input#search-confirm.form-control{type:"button", value:"Search"}
 
-.wf-container
+.wf-container.stuff-container
 %script#items-waterfall-tpl{:type => "text/x-handlebars-template"}
   {{#result}}
   {{#ifCond actable_type '==' 'Image'}}
@@ -15,25 +19,36 @@
   =render 'texts/text'
   {{/ifCond}}
   {{/result}}
-
 %script#images-waterfall-tpl{:type => "text/x-handlebars-template"}
   {{#result}}
   =render 'images/image'
   {{/result}}
-
 %script#texts-waterfall-tpl{:type => "text/x-handlebars-template"}
   {{#result}}
   =render 'texts/text'
   {{/result}}
 
 
-.main{"ng-controller" => "docFunction"}
-  %ul
-    %li.itemHolder{"ng-repeat" => "doc in docData"}
-      %a{href: "{{doc.url}}"}
-        %div
-          %h3 {{doc.title }}
-          %p {{doc.description}}
+.table-container.stuff-container
+%script#documents-tpl{type: "text/x-handlebars-template"}
+  %table.table.table-bordered
+    %thead
+      %tr
+        %th.col-md-2 Title
+        %th.col-md-7 Descrition
+        %th.col-md-3
+    %tbody
+      {{#result}}
+      =render 'documents/document'
+      {{/result}}
+
+
+.calendar-container.stuff-container
+%script#events-tpl{type: "text/x-handlebars-template"}
+  #calendar
+  =render 'events/update_event_modal'
+
+
 
 
 =render 'items/alter_modal'

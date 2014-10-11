@@ -12,8 +12,9 @@ class DocumentsController < ApplicationController
       format.json {
         ret = @documents.as_json
         render json:{
-            :total => ret.count,
-            :result => ret
+            status: 0,
+            total: ret.count,
+            result: ret
         }
       }
     end
