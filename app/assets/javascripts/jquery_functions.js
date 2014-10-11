@@ -20,3 +20,9 @@ jQuery.fn.serializeFormJSON = function() {
     });
     return o;
 };
+
+jQuery.fn.dropWaterfall = function() {
+    $(this).waterfall('pause', function () {
+        $(this).off("waterfall");
+    });
+};

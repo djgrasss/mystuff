@@ -5,9 +5,11 @@ var waterfall_type= {
 };
 $(document).on('ready page:load', function(){
     $('.search-panel .search-type').click(function(){
-        if ($('.wf_area').size()){
-            $('.wf_area').off("waterfall");
-            waterfall_pause();
+        $wf_cont = $('.wf-container .wf-area');
+
+
+        if ($wf_cont.size() !== 0){
+            $wf_cont.dropWaterfall();
         }
         $('.stuff-container').empty();
         typename = $(this).val();
@@ -28,7 +30,7 @@ $(document).on('ready page:load', function(){
             calendar_display($('#calendar'));
             bind_calendar_event();
         }else{
-            another_waterfall(waterfall_type[typename]);
+            waterfall_it(waterfall_type[typename]);
         }
     });
 });
