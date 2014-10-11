@@ -3,55 +3,20 @@
 .team-profile
   %h1 Team
 
-
-  .member.col-md-4
-    .col-md-4
-      =image_tag("team/photo-scottzhang.png", alt: "Scott Zhang", class:"photo")
-    .col-md-8
-      .name Scott Zhang
-      .role Co-Founder
-      .email
-        %span
-          %i.glyphicon-envelope
-        =mail_to "scott.likai.zhang@gmail.com ", "scott.likai.zhang@gmail.com "
-      .education The Johns Hopkins University
-
-  .member.col-md-4
-    .col-md-4
-      =image_tag("team/photo-jiefeng.png", alt: "Jie Feng", width: "100px", class:"photo")
-    .col-md-8
-      .name Jie Feng
-      .role Co-Founder & Chairman
-      .email
-        %span
-          %i.glyphicon-envelope
-        =mail_to "jiefeng.hopkins@gmail.com", "jiefeng.hopkins@gmail.com"
-      .education The Johns Hopkins University
-
-  .member.col-md-4
-    .col-md-4
-      =image_tag("team/photo-chenzhenwu.jpg", alt: "Chenzhen Wu", class:"photo")
-    .col-md-8
-      .name Chenzhen Wu
-      .role Co-Founder
-      .email
-        %span
-          %i.glyphicon-envelope
-        =mail_to "chzhen.wu@hotmail.com", "chzhen.wu@hotmail.com "
-      .education &Eacute;cole Polytechnique F&eacute;d&eacute;rale de Lausanne
-
-
-
-  .member.col-md-4
-    .col-md-4
-      =image_tag("team/photo-chunxiao.jgp", alt: "Chunxiao Song", class:"photo")
-    .col-md-8
-      .name Chunxiao Song
-      .role Co-Founder
-      .email
-        %span
-          %i.glyphicon-envelope
-        =mail_to "songchunxiao.jhu@gmail.com", "songchunxiao.jhu@gmail.com"
-      .education
-        The Johns Hopkins University
-        .department Bloomberg School of Public Health
+  - @team.each do |member|
+    .member.col-md-4
+      .col-md-4
+        =image_tag(member[:image], alt: member[:name], class:"photo")
+      .col-md-8
+        .name=member[:name]
+        .role=member[:role]
+        .email
+          %span
+            %i.glyphicon-envelope
+          =mail_to member[:email], member[:email]
+        .education
+          =member[:education]
+          -if member.has_key?(:department)
+            .department=member[:department]
+        .intro
+          =member[:intro]

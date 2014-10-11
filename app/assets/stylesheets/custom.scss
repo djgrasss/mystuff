@@ -90,8 +90,10 @@ $hoppy-color: $apple-grey;
     color: $hoppy-color;
     font-family: "Times New Roman", Georgia, Serif;
   }
-  .introduction{
+  .intro{
     @extend h5;
+    color: $hoppy-color;
+    font-weight: bold;
   }
   .email{
     margin: 8px 0px;
