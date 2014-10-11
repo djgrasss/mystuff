@@ -18,6 +18,7 @@ $(document).on('ready page:load', function(){
                     if (data && data.status === 0){
                         var template = $("#documents-tpl").getTemplate();
                         $('.table-container').prepend(template(data));
+                        doc_binding();
                     }
                 }
             );
@@ -25,6 +26,7 @@ $(document).on('ready page:load', function(){
             var template = $("#events-tpl").getTemplate();
             $('.calendar-container').prepend(template);
             calendar_display($('#calendar'));
+            bind_calendar_event();
         }else{
             another_waterfall(waterfall_type[typename]);
         }

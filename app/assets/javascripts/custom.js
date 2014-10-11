@@ -289,4 +289,64 @@ $(document).on('ready page:load', function(){
     $('#search-confirm').click(function(){
         another_waterfall(s_input.val());
     });
+
+    doc_binding=function() {
+        $('.doc_edit').click(function () {
+            var $this = $(this);
+            var $modal = $('#edit-modal');
+            var $tr = $(this).closest('tr');
+            var title = $tr.attr('data-title');
+            var description = $tr.attr('data-description');
+            var id = $tr.attr('data-id');
+            $modal.find('#doc_title').val(title);
+            $modal.find('#doc_description').val(description);
+            $modal.find('#save').click(function() {
+                var data = {};
+                data.title = $modal.find('#doc_title').val();
+                data.description = $modal.find('#doc_description').val();
+                $.ajax({
+                    url: "/documents/" + id,
+                    type: "post",
+                    dataType: "json",
+                    data: {
+                        _method: "patch",
+                        document: data
+                    },
+                    success: function (data) {
+                        $modal.modal('hide');
+                        //    $('.search-panel :input[value="Doc"]').trigger('click');
+                    },
+                    error: function(){
+                        alert("error");
+                    }
+                });
+            });
+        });
+
+        $('#edit-modal, #delete-modal').on('hidden.bs.modal', function (e) {
+            $('.search-panel :input[value="Doc"]').trigger('click');// do something...
+        })
+
+        $('.doc_delete').click(function(){
+            var id=$(this).closest('tr').attr('data-id');
+            var $modal=$('#delete-modal');
+            $modal.find('#delete').click(function(){
+                $.ajax({
+                    url: "/documents/" + id,
+                    type: "post",
+                    dataType: "json",
+                    data: {_method: "delete"},
+                    success: function (data) {
+                        $modal.modal('hide');
+                        //    $('.search-panel :input[value="Doc"]').trigger('click');
+                    },
+                    error: function(){
+                        alert("error");
+                    }
+                });
+            });
+        });
+
+    }
+
 });
