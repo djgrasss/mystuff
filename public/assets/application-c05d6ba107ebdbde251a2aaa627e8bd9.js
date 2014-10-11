@@ -5624,7 +5624,7 @@ jQuery.extend({
 		}
 
 		// Reset defaultChecked for any radios and checkboxes
-		// about to be appended to the DOM in IE 6/7 (#8060)
+		// team to be appended to the DOM in IE 6/7 (#8060)
 		if ( !support.appendChecked ) {
 			jQuery.grep( getAll( nodes, "input" ), fixDefaultChecked );
 		}
@@ -11352,7 +11352,7 @@ return jQuery;
 // compiled file.
 //
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
-// about supported directives.
+// team supported directives.
 //
 
 

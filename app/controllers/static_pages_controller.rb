@@ -8,7 +8,7 @@ class StaticPagesController < ApplicationController
   def help
   end
 
-  def about
+  def team
     @team = [
         {image:"team/photo-jiefeng.png",
          name: "Jie Feng",

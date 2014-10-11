@@ -8,7 +8,7 @@ Engex::Application.routes.draw do
 
   root  'static_pages#stuff'
   match '/help',    to: "static_pages#help",    via: 'get'
-  match '/about',   to: "static_pages#about",   via: 'get'
+  match '/team',   to: "static_pages#team",   via: 'get'
   match '/contact', to: "static_pages#contact", via: 'get'
   match '/test',    to: "static_pages#test",    via: 'get'
   match '/register',    to: "static_pages#register",    via: 'get'

@@ -6,7 +6,7 @@ ruby '2.0.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails'
 
-#If Bundler complains about a readline error
+#If Bundler complains team a readline error
 gem 'font-awesome-rails'
 gem 'rb-readline', '~> 0.4.2'
 gem 'bcrypt-ruby', '3.1.2'

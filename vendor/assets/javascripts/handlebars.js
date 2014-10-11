@@ -2154,7 +2154,7 @@ Handlebars.VM = {
           throw "Template was precompiled with an older version of Handlebars than the current runtime. "+
                 "Please update your precompiler to a newer version ("+runtimeVersions+") or downgrade your runtime to an older version ("+compilerVersions+").";
         } else {
-          // Use the embedded version info since the runtime doesn't know about this revision yet
+          // Use the embedded version info since the runtime doesn't know team this revision yet
           throw "Template was precompiled with a newer version of Handlebars than the current runtime. "+
                 "Please update your runtime to a newer version ("+compilerInfo[1]+").";
         }
