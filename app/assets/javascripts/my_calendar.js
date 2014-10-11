@@ -72,113 +72,117 @@ function eventChange(event) {
         }
     });
 }
-$('#calendar-modal #save').click(function(){
-    var event_id = $('#calendar-modal').attr("event-id");
-    var $cmodal=$('#calendar-modal');
-    var event = getEventFromCalendarModal($cmodal);
-    $.ajax({
-        url: "/events/" + event_id,
-        type: "post",
-        dataType: "json",
-        data: {
-            _method: "patch",
-            event: event
-        },
-        success: function(data){
-            if (data.status_code === 0){
-                $('#calendar-modal').modal('hide');
-                event_selected.title = event.title;
-                event_selected.description = event.description;
-                event_selected.start = event.begin_datetime;
-                event_selected.end = event.end_datetime;
-                $calendar.fullCalendar('updateEvent', event_selected);
-            }else{
-                alert("can't delete");
+function bind_calendar_event(){
+    $('#calendar-modal #save').on('click', function(){
+        var event_id = $('#calendar-modal').attr("event-id");
+        var $cmodal=$('#calendar-modal');
+        var event = getEventFromCalendarModal($cmodal);
+        $.ajax({
+            url: "/events/" + event_id,
+            type: "post",
+            dataType: "json",
+            data: {
+                _method: "patch",
+                event: event
+            },
+            success: function(data){
+                if (data.status_code === 0){
+                    $('#calendar-modal').modal('hide');
+                    event_selected.title = event.title;
+                    event_selected.description = event.description;
+                    event_selected.start = event.begin_datetime;
+                    event_selected.end = event.end_datetime;
+                    $calendar.fullCalendar('updateEvent', event_selected);
+                }else{
+                    alert("can't delete");
+                }
+            },
+            error: function(){
+                alert("error");
             }
-        },
-        error: function(){
-            alert("error");
+        });
+    });
+
+    $('#calendar-modal #delete').on('click', function(){
+        var event_id = $('#calendar-modal').attr("event-id");
+        $.ajax({
+            url: "/events/" + event_id,
+            type: "post",
+            dataType: "json",
+            data: {"_method":"delete"},
+            success: function(data){
+                if (data.status_code === 0){
+                    $('#calendar-modal').modal('hide');
+                    $('#calendar').fullCalendar('removeEvents', event_id);
+                }else{
+                    alert("can't delete");
+                }
+            },
+            error: function(){
+                alert("error");
+            }
+        });
+    });
+}
+$(document).on('ready page:load', function(){
+
+    var $add_event_modal =  $('#add-event-modal');
+    $add_event_modal.find('#add').click(function(){
+        var event = getEventFromCalendarModal($add_event_modal);
+        $.ajax({
+            url: "/events",
+            type: "post",
+            dataType: "json",
+            data: {
+                event: event
+            },
+            success: function(data){
+                if (data.status_code === 0){
+                    $add_event_modal.modal('hide');
+                }else{
+                    alert("can't add");
+                }
+            },
+            error: function(){
+                alert("error");
+            }
+        });
+    });
+
+    $add_event_modal.find("#stime").change(function(){
+        var startTime=$(this).val();
+        if (startTime===null || startTime==="") {
+            return;
+        } else {
+            startTime=moment(startTime);
+            var $end=$add_event_modal.find("#etime");
+            var endTime=$end.val();
+            if (endTime===null || endTime==="" || startTime>moment(endTime)) {
+                endTime=startTime.add(1, "hours");
+                $end.val(event_front_format(endTime.format()));
+            }
         }
     });
-});
 
-$('#calendar-modal #delete').click(function(){
-    var event_id = $('#calendar-modal').attr("event-id");
-    $.ajax({
-        url: "/events/" + event_id,
-        type: "post",
-        dataType: "json",
-        data: {"_method":"delete"},
-        success: function(data){
-            if (data.status_code === 0){
-                $('#calendar-modal').modal('hide');
-                $('#calendar').fullCalendar('removeEvents', event_id);
-            }else{
-                alert("can't delete");
+    $add_event_modal.find("#etime").change(function(){
+        var endTime=$(this).val();
+        if (endTime===null || endTime==="") {
+            return;
+        } else {
+            endTime=moment(endTime);
+            var $start=$add_event_modal.find("#stime");
+            var startTime=$start.val();
+            if (startTime===null || startTime==="" || moment(startTime)>endTime) {
+                startTime=endTime.add(-1, "hours");
+                $start.val(event_front_format(startTime.format()));
             }
-        },
-        error: function(){
-            alert("error");
         }
     });
-});
 
-var $calendar_add_modal =  $('#calendar-add-modal');
-$calendar_add_modal.find('#add').click(function(){
-    var event = getEventFromCalendarModal($calendar_add_modal);
-    $.ajax({
-        url: "/events",
-        type: "post",
-        dataType: "json",
-        data: {
-            event: event
-        },
-        success: function(data){
-            if (data.status_code === 0){
-                $calendar_add_modal.modal('hide');
-            }else{
-                alert("can't add");
-            }
-        },
-        error: function(){
-            alert("error");
-        }
+    $add_event_modal.on('show.bs.modal', function(){
+        $add_event_modal.find("#title").val("");
+        $add_event_modal.find("#description").val("");
+        $add_event_modal.find("#stime").val("");
+        $add_event_modal.find("#etime").val("");
     });
-});
-
-$calendar_add_modal.find("#stime").change(function(){
-    var startTime=$(this).val();
-    if (startTime===null || startTime==="") {
-        return;
-    } else {
-        startTime=moment(startTime);
-        var $end=$calendar_add_modal.find("#etime");
-        var endTime=$end.val();
-        if (endTime===null || endTime==="" || startTime>moment(endTime)) {
-            endTime=startTime.add(1, "hours");
-            $end.val(event_front_format(endTime.format()));
-        }
-    }
-});
-
-$calendar_add_modal.find("#etime").change(function(){
-    var endTime=$(this).val();
-    if (endTime===null || endTime==="") {
-        return;
-    } else {
-        endTime=moment(endTime);
-        var $start=$calendar_add_modal.find("#stime");
-        var startTime=$start.val();
-        if (startTime===null || startTime==="" || moment(startTime)>endTime) {
-            startTime=endTime.add(-1, "hours");
-            $start.val(event_front_format(startTime.format()));
-        }
-    }
-});
-
-$calendar_add_modal.on('show.bs.modal', function(){
-    $calendar_add_modal.find("#title").val("");
-    $calendar_add_modal.find("#description").val("");
-    $calendar_add_modal.find("#stime").val("");
-    $calendar_add_modal.find("#etime").val("");
 });

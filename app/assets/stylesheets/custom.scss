@@ -2,7 +2,9 @@ $hopkins-blue: #001978;
 $apple-grey: #616161;
 $hoppy-color: $apple-grey;
 
-
+a {
+  cursor: pointer;
+}
 .alternative-row:nth-child(even){
   background-color: #eeeeee;
 }

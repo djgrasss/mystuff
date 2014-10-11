@@ -17,6 +17,7 @@
 //= require bootstrap.min
 //= require common
 //= require jquery_functions.js
+//= require jquery.datetimepicker
 
 //= require my_search_panel.js
 //= require my_waterfall.js
@@ -24,7 +25,6 @@
 
 //= require moment
 //= require jquery.fileupload
-//= require jquery.datetimepicker
 //= require jquery.mousewheel-3.0.6.pack.js
 //= require vendor
 //= require modal

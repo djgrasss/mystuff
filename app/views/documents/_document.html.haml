@@ -1,11 +1,49 @@
-%tr.alternative-row
+
+- document_url = root_url + (url_for @document)
+- qr_url = qr_code_data_url(document_url)
+
+%tr.alternative-row{'data-title'=> '{{title}}', 'data-description'=>'{{description}}', 'data-id'=>'{{id}}' }
   %td {{title}}
   %td {{description}}
   %td
     %a{href: "{{url}}"}Download
     \|
-    %a Show
+    %a.doc_show.fancybox.qr_code{href: qr_url} Show
     \|
-    %a Edit
+    %a.doc_edit{'data-toggle'=>'modal', 'data-target'=>'#edit-modal'} Edit
     \|
-    %a Delete
+    %a.doc_delete{'data-toggle'=>'modal', 'data-target'=>'#delete-modal'} Delete
+
+
+#edit-modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} &times;
+          %span.sr-only Close
+        %h4#myModalLabel.modal-title Edit
+      .modal-body
+        %label Title
+        %input#doc_title.form-control/
+        %label Description
+        %input#doc_description.form-control/
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+        %button#save.btn.btn-primary{:type => "button"} Save changes
+
+
+
+#delete-modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} &times;
+          %span.sr-only Close
+        %h4#myModalLabel.modal-title Delete File
+      .modal-body
+        %label Are you sure you want to delete the file?
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} No
+        %button#delete.btn.btn-primary{:type => "button"} Yes
