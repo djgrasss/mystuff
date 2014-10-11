@@ -11,6 +11,7 @@
  wf_type: true
  */
 $(document).on('ready page:load', function(){
+    clear_stuff_container();
     $( window ).unload(function() {
       alert( "Handler for .unload() called." );
     });
@@ -270,25 +271,6 @@ $(document).on('ready page:load', function(){
         });
     });
 
-    if ($('.wf-container').size()){
-        waterfall_it("items");
-        var availableTags = [
-            "items",
-            "images",
-            "texts"
-        ];
-        var s_input = $("#search-input");
-        s_input.autocomplete({
-            source: availableTags
-        }).keyup(function(event){
-            if(event.keyCode === 13){
-                another_waterfall(s_input.val());
-            }
-        });
-    }
-    $('#search-confirm').click(function(){
-        another_waterfall(s_input.val());
-    });
 
     doc_binding=function() {
         $('.doc_edit').click(function () {

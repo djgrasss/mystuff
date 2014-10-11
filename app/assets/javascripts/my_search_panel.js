@@ -5,11 +5,7 @@ var waterfall_type= {
 };
 $(document).on('ready page:load', function(){
     $('.search-panel .search-type').click(function(){
-        if ($('.wf_area').size()){
-            $('.wf_area').off("waterfall");
-            waterfall_pause();
-        }
-        $('.stuff-container').empty();
+        clear_stuff_container();
         typename = $(this).val();
         if (typename == 'Doc'){
             $.getJSON('/documents.json',
@@ -28,7 +24,9 @@ $(document).on('ready page:load', function(){
             calendar_display($('#calendar'));
             bind_calendar_event();
         }else{
-            another_waterfall(waterfall_type[typename]);
+            waterfall_it(waterfall_type[typename]);
         }
     });
 });
+
+
