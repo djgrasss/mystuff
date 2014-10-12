@@ -6,16 +6,11 @@ Engex::Application.routes.draw do
   resources :documents
 
 
-  root  'static_pages#stuff'
+  root  'static_pages#home'
   match '/help',    to: "static_pages#help",    via: 'get'
   match '/team',   to: "static_pages#team",   via: 'get'
-  match '/contact', to: "static_pages#contact", via: 'get'
-  match '/test',    to: "static_pages#test",    via: 'get'
-  match '/register',    to: "static_pages#register",    via: 'get'
-  match '/stuff',    to: "static_pages#stuff",    via: 'get'
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
-
   match '/signup',  to: 'users#new',            via: 'get'
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
