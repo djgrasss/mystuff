@@ -1,0 +1,19 @@
+%div{style: "display:none"}
+  #signup{style: 'padding:20px; background:#fff;'}
+    .row
+      .col-md-10.col-md-offset-1
+        %form.form{"accept-charset" => "utf-8"}
+          %legend Sign Up
+          = hidden_field_tag :authenticity_token, form_authenticity_token
+          .row
+            .col-xs-6.col-md-6
+              %input.form-control.input-lg{:name => "user[firstname]", :placeholder => "First Name", :type => "text", :value => ""}/
+            .col-xs-6.col-md-6
+              %input.form-control.input-lg{:name => "user[lastname]", :placeholder => "Last Name", :type => "text", :value => ""}/
+          %input.form-control.input-lg{:name => "user[email]", :placeholder => "Your Email", :type => "text", :value => ""}/
+          %input.form-control.input-lg{:name => "user[password]", :placeholder => "Password", :type => "password", :value => ""}/
+          %input.form-control.input-lg{:name => "user[password_confirmation]", :placeholder => "Confirm Password", :type => "password", :value => ""}/
+          %br/
+          -#%span.help-block By clicking Create my account, you agree to our Terms and that you have read our Data Use Policy, including our Cookie Use.
+          %button.btn.btn-lg.btn-primary.btn-block.signup-btn{:type => "submit"}
+            Create my account

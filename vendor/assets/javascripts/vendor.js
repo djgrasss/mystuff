@@ -2,3 +2,4 @@
 //= require ./fullcalendar/moment.min.js
 //= require ./fullcalendar/fullcalendar.min.js
 //= require ./waterfall.js
+//= require ./colorbox/jquery.colorbox.js

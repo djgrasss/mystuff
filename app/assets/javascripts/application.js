@@ -22,6 +22,7 @@
 //= require my_search_panel.js
 //= require my_waterfall.js
 //= require my_calendar.js
+//= require my_handlebars.js
 
 //= require moment
 //= require jquery.fileupload

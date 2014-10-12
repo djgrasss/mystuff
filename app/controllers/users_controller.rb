@@ -18,7 +18,6 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
-    render layout: false
   end
 
   # GET /users/1/edit
@@ -28,12 +27,29 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.save
-      sign_in @user
-      flash[:success] = "Welcome to Engex!"
-      redirect_to @user
-    else
-      render 'new'
+    respond_to do |format|
+      if @user.save
+        sign_in @user
+        format.html{
+          flash[:success] = "Welcome to Engex!"
+          redirect_to @user
+        }
+        format.json{
+          render json:{
+              status_code: 0,
+          }
+        }
+      else
+        format.html{
+          render 'new'
+        }
+        format.json{
+          render json:{
+              status_code: 1,
+              renponse: @user.errors
+          }
+        }
+      end
     end
   end
 
@@ -79,7 +95,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:firstname, :lastname, :email, :password, :password_confirmation)
     end
     def correct_user
       @user = User.find(params[:id])

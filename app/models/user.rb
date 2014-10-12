@@ -2,7 +2,8 @@ class User < ActiveRecord::Base
   #before_save {self.email = email.downcase}
   before_save { email.downcase! }
   before_create :create_member_token
-  validates :name, presence: true, length: {maximum: 50}
+  validates :firstname, presence: true, length: {maximum: 50}
+  validates :lastname, presence: true, length: {maximum: 50}
   #VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, format:{with: VALID_EMAIL_REGEX}, uniqueness:{case_sensitive: false}
