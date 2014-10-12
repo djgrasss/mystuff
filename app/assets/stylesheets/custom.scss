@@ -1,7 +1,12 @@
 $hopkins-blue: #001978;
 $apple-grey: #616161;
-$hoppy-color: $apple-grey;
+$chrome-tab: #3c536f;
+$hoppy-color: $chrome-tab;
 
+
+#not-Signedin-modal{
+  top: 30%;
+}
 a {
   cursor: pointer;
 }
@@ -16,8 +21,11 @@ a {
   display: inline;
 }
 .search-panel{
+  margin-bottom: 0;
+  margin-top: 8px;
   input{
     display: inline;
+    margin-bottom: 4px;
   }
   #search-input{
     width: 160px;
@@ -25,7 +33,7 @@ a {
   #search-confirm{
     width: 70px;
   }
-  .search-type{
+  .goto{
     @extend .inline;
     width: auto;
     color: #79a1d2;

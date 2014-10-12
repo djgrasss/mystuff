@@ -41,17 +41,17 @@ module SessionsHelper
   end
   def signed_in_user
     unless signed_in?
-      if params[:client_type] == "plugin"
+      # if params[:client_type] == "plugin"
         render json:{
             status_code: 0,
             response:{
                 signed_in: false
             }
         } and return
-      end
-      store_location
-      flash[:info] = "Please sign in."
-      redirect_to signin_url
+      # end
+      # store_location
+      # flash[:info] = "Please sign in."
+      # redirect_to signin_url
     end
   end
 end

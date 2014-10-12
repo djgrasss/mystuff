@@ -1,11 +1,11 @@
 class StaticPagesController < ApplicationController
-  def stuff
-  end
+
 
   def home
   end
 
   def help
+    render layout: false
   end
 
   def team
@@ -47,15 +47,7 @@ class StaticPagesController < ApplicationController
          intro: "Design, Marketing"
         }
     ]
+    render layout: false
   end
 
-  def contact
-  end
-
-  def test
-  end
-  def find_surrogacy
-  end
-  def register
-  end
 end

@@ -1,4 +1,5 @@
 class DocumentsController < ApplicationController
+  before_action :signed_in_user, only: [:edit, :update, :index, :create]
   before_action :set_document, only: [:show, :edit, :update, :destroy]
 
   # GET /documents

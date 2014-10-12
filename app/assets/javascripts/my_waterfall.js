@@ -40,7 +40,9 @@ function waterfall_it(wf_type){
             },
             renderData: function (data, dataType) {
                 var tpl,template;
-
+                if (!signedin(data)){
+                    waterfall_pause();
+                }
                 if (data.total < 30) {
                     waterfall_pause();
                 } 
@@ -83,13 +85,8 @@ $(document).on('ready page:load', function(){
             "images",
             "texts"
         ];
-        var availableTags = [
-            "items",
-            "images",
-            "texts"
-        ];
         s_input.autocomplete({
-            source: availableTags
+            source: waterfallTags
         }).keyup(function(event){
             if(event.keyCode === 13){
                 $('#search-confirm').click();

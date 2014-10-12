@@ -1,15 +1,5 @@
 :javascript
   waterfall=true
-
-.form-group.search-panel
-  %input.search-type.form-control{type:"button", value:"All"}
-  %input.search-type.form-control{type:"button", value:"Image"}
-  %input.search-type.form-control{type:"button", value:"Text"}
-  %input.search-type.form-control{type:"button", value:"Doc"}
-  %input.search-type.form-control{type:"button", value:"Calendar"}
-  %input#search-input.form-control{placeholder: "Your keywords here"}
-  %input#search-confirm.form-control{type:"button", value:"Search"}
-
 .wf-container.stuff-container
 %script#items-waterfall-tpl{:type => "text/x-handlebars-template"}
   {{#result}}
@@ -48,6 +38,9 @@
   #calendar
   =render 'events/update_event_modal'
 
+
+
+.html-container.stuff-container
 
 
 

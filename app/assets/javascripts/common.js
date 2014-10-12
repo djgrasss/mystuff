@@ -9,6 +9,32 @@ function event_back_format(time_str){
     return moment(time_str).format("YYYY-MM-DDTHH:mm");
 }
 
+function signedin(data){
+    if (data && data.response && data.response.signed_in === false){
+        $('#not-Signedin-modal').modal('show');
+        return false;
+    }else{ 
+        return true;
+    }
+}
+function check_signedin(){
+    $.ajax({
+        url: '/api/check_signin',
+        type: 'get',
+        dataType: 'json',
+        async: false,
+        complete: function (jqXHR, textStatus) {
+            // callback
+        },
+        success: function (data, textStatus, jqXHR) {
+            $('#signed_in').val(signedin(data));
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            // error callback
+        }
+    });
+    return $('#signed_in').val() === "true";
+}
 function txt_wrap(){
     $('.txt_wrap').each(function(){
         var $wrap=$(this);
@@ -83,7 +109,7 @@ function getEventFromCalendarModal($cmodal){
 }
 
 Handlebars.registerHelper('isImage', function(block, options) {
-    console.log(options)
+    console.log(options);
     if (this.actable_type == "Image") {
       return options.fn(this);
     } else {

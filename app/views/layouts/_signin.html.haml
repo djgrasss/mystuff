@@ -16,7 +16,7 @@
       %li= link_to "Profile", current_user
       %li= link_to "Settings", edit_user_path(current_user)
       %li.divider
-      %li= link_to "Sign out", signout_path, method: "delete"
+      %li= link_to "Signout", signout_path, method: "delete"
 - else
-  %li= link_to "Sign in", signin_path
-  %li= link_to "Signup", signup_path
+  %li= link_to "Signin", signin_path, class: "goto", gotourl: "/signin"
+  %li= link_to "Signup", signup_path, class: "goto", gotourl: "/signup"

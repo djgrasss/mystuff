@@ -4,21 +4,19 @@
     .navbar-header
       %button.navbar-toggle{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
         %span.sr-only Toggle navigation
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      -#= link_to "HOPPY",  root_path, class: "navbar-brand"
       %a{:href => root_path, :class=>"navbar-brand"}
         =image_tag("title_logo.png", alt: "JNote")
-    / Collect the nav links, forms, and other content for toggling
-    #bs-example-navbar-collapse-1.collapse.navbar-collapse
-      %ul.nav.navbar-nav
-        %li
-          = link_to "Home", root_path
-        %li
-          = link_to "Help", help_path
-        %li
-          = link_to "Team", team_path
+    .navbar-header.form-group.search-panel.inline
+      %input.goto.form-control{type:"button", value:"All", gotourl:'items'}
+      %input.goto.form-control{type:"button", value:"Image", gotourl:'images'}
+      %input.goto.form-control{type:"button", value:"Text", gotourl:'texts'}
+      %input.goto.form-control{type:"button", value:"Doc", gotourl:'/documents'}
+      %input.goto.form-control{type:"button", value:"Calendar", gotourl:'/events'}
+      %input.goto.form-control{type:"button", value:"Team", gotourl:'/team'}
+      %input.goto.form-control{type:"button", value:"Help", gotourl:'/help'}
+      %input#search-input.form-control{placeholder: "Your keywords here"}
+      %input#search-confirm.form-control{type:"button", value:"Search"}
+    .collapse.navbar-collapse.inline
       %ul.nav.navbar-nav.navbar-right
         = render 'layouts/signin'
     / /.navbar-collapse
@@ -26,3 +24,9 @@
 = render 'events/new_modal'
 = render 'images/new_modal'
 = render 'documents/new_modal'
+#not-Signedin-modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-body.text-center
+        You haven't signin, please signin or signup!
+%input#signed_in{type:"hidden"}
