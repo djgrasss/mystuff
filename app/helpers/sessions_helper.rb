@@ -14,6 +14,14 @@ module SessionsHelper
   def sign_out
     current_user.update_attribute(:mystuff_token, User.digest(User.new_mystuff_token))
     cookies.delete(:mystuff_token)
+    if current_user.provider!=nil
+      if current_user.provider == "facebook"
+        redirect_to "https://www.facebook.com/logout.php?next=#{root_url}&access_token=#{current_user.oauth_token}"
+      end
+    else
+      redirect_to root_url
+    end
+
     self.current_user = nil
   end
 
