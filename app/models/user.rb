@@ -11,20 +11,38 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6 }
 
   def self.omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.provider = auth.provider
-      user.uid = auth.uid
-      user.oauth_token = auth.credentials.token
-      user.oauth_expires_at = Time.at(auth.credentials.expires_at)
-      user.firstname = auth.info.first_name
-      user.lastname = auth.info.last_name
-      user.email = auth.info.email
-      user.password=user.email
-      user.mystuff_token = User.digest(User.new_mystuff_token)
+    if auth.provider == "facebook"
+      where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+        user.provider = auth.provider
+        user.uid = auth.uid
+        user.oauth_token = auth.credentials.token
+        user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+        user.firstname = auth.info.first_name
+        user.lastname = auth.info.last_name
+        user.email = auth.info.email
+        user.password=user.email
+        user.mystuff_token = User.digest(User.new_mystuff_token)
 
 
-      user.save!
+        user.save!
+      end
+    elsif auth.provider == "twitter"
+      where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+        user.provider = auth.provider
+        user.uid = auth.uid
+        user.oauth_token = auth.credentials.token
+        #user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+        user.firstname = auth.info.nickname
+        user.lastname = auth.info.name
+        user.email = auth.info.nickname+"-twitter@twitter.com"
+        user.password=user.email
+        user.mystuff_token = User.digest(User.new_mystuff_token)
+
+
+        user.save!
+      end
     end
+
   end
 
   def User.get_index

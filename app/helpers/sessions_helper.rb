@@ -17,6 +17,8 @@ module SessionsHelper
     if current_user.provider!=nil
       if current_user.provider == "facebook"
         redirect_to "https://www.facebook.com/logout.php?next=#{root_url}&access_token=#{current_user.oauth_token}"
+      elsif current_user.provider == "twitter"
+        redirect_to root_url
       end
     else
       redirect_to root_url
