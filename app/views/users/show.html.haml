@@ -1,10 +1,10 @@
-= provide(:title, @user.firstname)
+= provide(:title, @user.name)
 .row
   %aside.span4
     %section
       %h1
         = gravatar_for @user
-        = @user.firstname
+        = @user.name
         = @user.email
 = link_to 'Edit', edit_user_path(@user)
 |
