@@ -10,15 +10,34 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, length: { minimum: 6 }
 
+  def self.omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.oauth_token = auth.credentials.token
+      user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+      user.firstname = auth.info.first_name
+      user.lastname = auth.info.last_name
+      user.email = auth.info.email
+      user.password=user.email
+      user.mystuff_token = User.digest(User.new_mystuff_token)
+
+
+      user.save!
+    end
+  end
 
   def User.get_index
   end
+
   def User.new_mystuff_token
     SecureRandom.urlsafe_base64
   end
+
   def User.digest(token)
     Digest::SHA1.hexdigest(token.to_s)
   end
+
   private
     def create_member_token
       self.mystuff_token = User.digest(User.new_mystuff_token)
