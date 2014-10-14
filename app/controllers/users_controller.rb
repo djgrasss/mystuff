@@ -8,6 +8,33 @@ class UsersController < ApplicationController
   def index
     @users = User.paginate(page: params[:page])
   end
+  def try_save(user)
+    respond_to do |format|
+      if user.save
+        sign_in user
+        format.html{
+          flash[:success] = "Welcome to Engex!"
+          redirect_to user
+        }
+        format.json{
+          render json:{
+              status_code: 0,
+          }
+        }
+      else
+        format.html{
+          render 'new'
+        }
+        format.json{
+          render json:{
+              status_code: 1,
+              renponse: user.errors
+          }
+        }
+      end
+    end
+  end
+
 
   # GET /users/1
   # GET /users/1.json
@@ -27,30 +54,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    respond_to do |format|
-      if @user.save
-        sign_in @user
-        format.html{
-          flash[:success] = "Welcome to Engex!"
-          redirect_to @user
-        }
-        format.json{
-          render json:{
-              status_code: 0,
-          }
-        }
-      else
-        format.html{
-          render 'new'
-        }
-        format.json{
-          render json:{
-              status_code: 1,
-              renponse: @user.errors
-          }
-        }
-      end
-    end
+    try_save @user
   end
 
   # PATCH/PUT /users/1
@@ -86,6 +90,17 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  #facebook auth login
+  def authin
+    @user = User.omniauth(env['omniauth.auth'])
+    try_save @user
+  end
+
+#{  def authout
+#    session[:user_id] = nil
+#    redirect_to root_url
+#  end}
 
   private
     # Use callbacks to share common setup or constraints between actions.

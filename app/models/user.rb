@@ -21,9 +21,6 @@ class User < ActiveRecord::Base
       user.email = auth.info.email
       user.password=user.email
       user.mystuff_token = User.digest(User.new_mystuff_token)
-
-
-      user.save!
     end
   end
 

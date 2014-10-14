@@ -16,7 +16,7 @@ Engex::Application.routes.draw do
   match '/signout', to: 'sessions#destroy',     via: 'delete'
 
   #facebook auth
-  get 'auth/:provider/callback', to: 'sessions#authin'
+  get 'auth/:provider/callback', to: 'users#authin'
   #get 'logout', to: 'sessions#destroy'
 
   resources :api, :defaults => { :format => 'json' } do

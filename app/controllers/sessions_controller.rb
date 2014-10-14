@@ -35,17 +35,6 @@ class SessionsController < ApplicationController
     sign_out
   end
 
-  #facebook auth login
-  def authin
-    user = User.omniauth(env['omniauth.auth'])
-    sign_in user
-    redirect_to root_url
-  end
-
-#{  def authout
-#    session[:user_id] = nil
-#    redirect_to root_url
-#  end}
 
 
 
