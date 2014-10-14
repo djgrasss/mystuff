@@ -19,6 +19,8 @@
 //= require jquery_functions.js
 //= require jquery.datetimepicker
 
+//= require router.js
+
 //= require my_search_panel.js
 //= require my_waterfall.js
 //= require my_calendar.js
