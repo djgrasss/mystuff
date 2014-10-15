@@ -10,10 +10,10 @@
       %input.goto.form-control{type:"button", value:"All", gotourl:'items'}
       %input.goto.form-control{type:"button", value:"Image", gotourl:'images'}
       %input.goto.form-control{type:"button", value:"Text", gotourl:'texts'}
-      %input.goto.form-control{type:"button", value:"Doc", gotourl:'/documents'}
+      %input.goto.form-control{type:"button", value:"Doc", gotourl:'documents'}
       %input.goto.form-control{type:"button", value:"Calendar", gotourl:'/events'}
-      %input.goto.form-control{type:"button", value:"Team", gotourl:'/team'}
-      %input.goto.form-control{type:"button", value:"Help", gotourl:'/help'}
+      %input.goto.form-control{type:"button", value:"Team", gotourl:'team'}
+      %input.goto.form-control{type:"button", value:"Help", gotourl:'help'}
       %input#search-input.form-control{placeholder: "Your keywords here"}
       %input#search-confirm.form-control{type:"button", value:"Search"}
     .collapse.navbar-collapse.inline
@@ -25,9 +25,11 @@
 = render 'images/new_modal'
 = render 'documents/new_modal'
 = render 'users/signup'
+= render 'shared/notice_modal'
 #not-Signedin-modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
   .modal-dialog
     .modal-content
       .modal-body.text-center
-        You haven't signin, please signin or signup!
+
+/for record signed_in state in javascript!! don't delete
 %input#signed_in{type:"hidden"}

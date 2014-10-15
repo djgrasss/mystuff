@@ -84,6 +84,7 @@ gem "slim"
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'omniauth-google-oauth2'
+gem 'rack-cors', :require => 'rack/cors'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -7,7 +7,7 @@ require "sprockets/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module Engex
+module Jienote
   class Application < Rails::Application
     # config.assets.paths << Rails.root.join("lib", "videoplayer", "flash")
     # Settings in config/environments/* take precedence over those specified here.
@@ -22,5 +22,11 @@ module Engex
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
+    config.middleware.insert_before "ActionDispatch::Static", "Rack::Cors" do
+      allow do
+        origins '*'
+        resource '*', :headers => :any, :methods => [:get, :post, :options]
+      end
+    end
   end
 end

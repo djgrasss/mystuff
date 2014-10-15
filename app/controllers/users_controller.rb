@@ -8,6 +8,32 @@ class UsersController < ApplicationController
   def index
     @users = User.paginate(page: params[:page])
   end
+  def try_save(user)
+    respond_to do |format|
+      if user.save
+        sign_in user
+        format.html{
+          redirect_to root_path, :notice => 'Welcome to Jienote!'
+        }
+        format.json{
+          render json:{
+              status_code: 0,
+          }
+        }
+      else
+        format.html{
+          render 'new'
+        }
+        format.json{
+          render json:{
+              status_code: 1,
+              response: user.errors
+          }
+        }
+      end
+    end
+  end
+
 
   # GET /users/1
   # GET /users/1.json
@@ -27,30 +53,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    respond_to do |format|
-      if @user.save
-        sign_in @user
-        format.html{
-          flash[:success] = "Welcome to Engex!"
-          redirect_to @user
-        }
-        format.json{
-          render json:{
-              status_code: 0,
-          }
-        }
-      else
-        format.html{
-          render 'new'
-        }
-        format.json{
-          render json:{
-              status_code: 1,
-              renponse: @user.errors
-          }
-        }
-      end
-    end
+    try_save @user
   end
 
   # PATCH/PUT /users/1
@@ -86,6 +89,22 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  #facebook auth login
+  def authin
+    @user = User.omniauth(env['omniauth.auth'])
+    if !User.exists?(email: @user.email)
+      @user.save!
+    end
+    @user = User.find_by_email(@user.email)
+    sign_in @user
+    redirect_to root_path, :notice => 'Welcome to Jienote!'
+  end
+
+#{  def authout
+#    session[:user_id] = nil
+#    redirect_to root_url
+#  end}
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -26,3 +26,11 @@ jQuery.fn.dropWaterfall = function() {
         $(this).off("waterfall");
     });
 };
+
+jQuery.fn.listData = function(data){
+    var ele = $('ul')
+    $.each(data, function(index, value){
+        html.append($('li').text(value));
+    })
+    $(this).html(ele);
+}

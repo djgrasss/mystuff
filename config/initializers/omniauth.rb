@@ -12,15 +12,16 @@ Rails.application.config.middleware.use OmniAuth::Builder do
               ca_file: Rails.root.join('lib', 'assets', 'cacert.pem').to_s
           }
       }
+      #callback_url: ''
   }
 
-  provider :twitter, 'kBRoXo0lKJHkOPpANJSTxFoyf', 'qFnpNEYdvvMmYMnxr1Lv0AS7AomgYByjMeO3YP7yahWm2HXwm1',
+  provider :twitter, 'IRKqVMboYTDi5kSyKHk16FGeI', 'CFTYPmLVj7VoU14gncYQar3Wojq0HcJcsjJOwx1GJlArnfCIzq',
   {
       #secure_image_url: 'true',
       #image_size: 'normal',
       authorize_params: {
           force_login: 'false',
-          lang: 'pt'
+          lang: 'en'
       }
   }
 end

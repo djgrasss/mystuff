@@ -15,14 +15,17 @@
 //= require jquery-ui/jquery-ui.js
 //= require handlebars.js
 //= require bootstrap.min
-//= require common
 //= require jquery_functions.js
+//= require common
 //= require jquery.datetimepicker
+
+//= require router.js
 
 //= require my_search_panel.js
 //= require my_waterfall.js
 //= require my_calendar.js
 //= require my_handlebars.js
+//= require my_signup.js
 
 //= require moment
 //= require jquery.fileupload

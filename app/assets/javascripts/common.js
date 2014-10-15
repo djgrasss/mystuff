@@ -11,7 +11,7 @@ function event_back_format(time_str){
 
 function signedin(data){
     if (data && data.response && data.response.signed_in === false){
-        $('#not-Signedin-modal').modal('show');
+//        $('#not-Signedin-modal').modal('show');
         return false;
     }else{ 
         return true;

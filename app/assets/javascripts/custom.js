@@ -11,27 +11,6 @@
  wf_type: true
  */
 $(document).on('ready page:load', function(){
-    $signupform = $('#signup form');
-    $signupform.find(':submit').click(function(e){
-        e.preventDefault();
-        var data = $signupform.serializeFormJSON();
-        $.ajax({
-            url: '/users',
-            type: 'post',
-            dataType: 'json',
-            data: data,
-            success: function (data, textStatus, jqXHR) {
-                console.log(data);
-                if (data.status_code === 0){
-                    window.location = "/";
-                }else{
-                    alert(JSON.stringify(data));
-                }
-            }
-        });
-    })
-
-
 
     clear_stuff_container();
     $( window ).unload(function() {

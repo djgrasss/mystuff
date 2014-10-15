@@ -23,5 +23,5 @@ def secure_token
     token
   end
 end
-Engex::Application.config.secret_key_base = secure_token
+Jienote::Application.config.secret_key_base = secure_token
 #Engex::Application.config.secret_key_base = '7e62a2535ae0e19953e83f2c1ee45606aac69d78d6cdcc9396ab90f37671fc6a577cdf4c4ab68c45f2ae8d77800c96801d4531f1871466557fc114c76417885a'

@@ -1,4 +1,5 @@
 :javascript
+  page="#{params[:page]}"
   waterfall=true
 .wf-container.stuff-container
 %script#items-waterfall-tpl{:type => "text/x-handlebars-template"}
@@ -19,7 +20,7 @@
   {{/result}}
 
 
-.table-container.stuff-container
+.tpl-container.stuff-container
 %script#documents-tpl{type: "text/x-handlebars-template"}
   %table.table.table-bordered
     %thead

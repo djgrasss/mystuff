@@ -22,9 +22,6 @@ class User < ActiveRecord::Base
         user.email = auth.info.email
         user.password=user.email
         user.mystuff_token = User.digest(User.new_mystuff_token)
-
-
-        user.save!
       end
     elsif auth.provider == "twitter"
       where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -37,9 +34,6 @@ class User < ActiveRecord::Base
         user.email = auth.info.nickname+"-twitter@twitter.com"
         user.password=user.email
         user.mystuff_token = User.digest(User.new_mystuff_token)
-
-
-        user.save!
       end
     end
 
@@ -50,6 +44,10 @@ class User < ActiveRecord::Base
 
   def User.new_mystuff_token
     SecureRandom.urlsafe_base64
+  end
+
+  def name
+    self.firstname.to_s + ' ' + self.lastname.to_s
   end
 
   def User.digest(token)
