@@ -2,7 +2,7 @@ OmniAuth.config.logger = Rails.logger
 
 Rails.application.config.middleware.use OmniAuth::Builder do
 
-  provider :facebook, '351033021726357', '1ba49f611ab0c8718207dcacfce0c353',
+  provider :facebook, ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET'],
   {
       display: 'popup',
       #secure_image_url: 'true',
@@ -15,7 +15,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
       #callback_url: ''
   }
 
-  provider :twitter, 'IRKqVMboYTDi5kSyKHk16FGeI', 'CFTYPmLVj7VoU14gncYQar3Wojq0HcJcsjJOwx1GJlArnfCIzq',
+  provider :twitter, ENV['TWITTER_KEY'], ENV['TWITTER_SECRET'],
   {
       #secure_image_url: 'true',
       #image_size: 'normal',
